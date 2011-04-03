@@ -92,6 +92,52 @@ primarily look at the articles' abstract and conclusions. From the
 articles we find relevant we will also look at the references and
 investigate if they are relevant for the topic.
 
+\section{Version Control History}
+The history of Version Control Systems can be divided into three
+categories; the ones that only manages local files, the ones that rely
+on a central server to serve connecting clients, and finally the
+distributed ones, where every 'node' can act as both a client and a
+server. The three categories roughly follow each other
+chronologically, naturally with transition-periods in between. At the
+moment the dominating tools are mostly client-server, but the
+distributed ones are rising fast in popularity, so perhaps we are
+currently in the start of a new transition.
+
+\subsection{The Local Era}
+The first VCS ever released was the \emph{Source Code Control System}
+(SCCS) in 1972. SCCS tried to solve a number of problems that software
+developers of that time had. Manually managing several versions of the
+same product simultaneously was not feasible in the long run for
+several reasons described by the creator of SCCS, Marc J. Rochkind
+\cite{sccs}:
+
+\begin{itemize}
+\item The amount of space to store the source code may be several
+      times that needed for any particular version.
+\item Fixes made to one version sometimes fail to get made for to
+      other versions.
+\item When changes occur it is difficult to tell exactly what changed
+      and when.
+\item When a customer has a problem it is hard to figure out what
+      version he has.
+\end{itemize}
+
+Instead of saving entire files in various states, SCCS stores the
+differences between versions of the same file (called diffs, or
+deltas). With each delta SCCS also stores metadata such as who made
+the change, why, and when. This did not only save precious storage
+space, but also provided the \emph{traceability} that the software
+developers had previously lacked.
+
+It is worth noting that SCCS was not the only VCS that followed the
+philosophy of storing the files locally, \emph{Revision Control
+  System} (RCS) was released in 1982 and gradually took over as the
+dominant VCS for Unix.
+
+\subsection{The Client-Server Era}
+
+\subsection{The Distributed Era}
+
 \bibliographystyle{plain}
 \bibliography{references}
 

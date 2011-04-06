@@ -70,6 +70,89 @@
 %  System} (RCS) was released in 1982 and gradually took over as the
 %dominant VCS for Unix.
 %
+
+\subsection{VCS Workflow}
+
+VCS can be used in a number of ways. Some limits are posed by the choice
+of tools. Subversion is built for centralized version control, whereas
+tools like git or mercurial are built for decentralized. Members of the 
+latter category are generally more flexible; e.g. git is almost as simple 
+to run centralized as running it decentralized as it is intended. The 
+Telia Smart Home project has chosen to use git. The reasons for this are
+several: the ability to use git decentralized as well a centralized was a
+major point. Also, the prior experience from some members of the project
+made the transition for other members less burdensome.
+
+But defining a workflow does not end with selecting a tool. As stated, 
+git is very flexible in the way developers interact with it. It is not
+uncommon to use it centralized, and in fact, the Telia Smart Home project
+does just this in their documentation repository. But one of the key 
+strength is its decentralization. It has no enforced "central repository"
+through which all changesets must pass. If the team want to have a 
+centralized repository it must itself give a arbitrary repository that
+semantic meaning.
+
+The workflow designed used for the code repositories in the Telia Smart 
+Home project is based upon individual developer repositories and branches.
+Each developer has an own repository, and makes commits to this. It then
+pushes changes to a repository on a central build server. Here, a build
+is triggered using Jenkins continuous integration system and the commit is
+also forwarded to the so called "baseline" repository, but to a developer's
+private branch.
+
+The release manager is now notified that there is a commit awaiting
+approval. He or she can check build and test status on Jenkins and see the
+delta between baseline and the proposed patch. After possibly running local
+tests, the release manager can either approve and merge the commit or
+reject it and inform the author of why it wasn't suitable for inclusion.
+If the commit is merged, other developers are now able to merge it into
+their local repositories, their working copy of the source code.
+
+When designing this system, the sought benefits was the integrated code 
+review and approval system. With this, the release managers could validate 
+adherence to coding conventions as well as making sure that the system
+is buildable and all unit tests passes. Possibly, much of this could even
+have been automated (e.g. static code analysis and coding style validation
+tools are commonplace) to an even higher degree, but that is, as always, a 
+cost/benefit question.
+
+Are there any alternatives to this? Certainly. As stated twice before, git
+is indeed quite flexible. It will yield to the wishes of the user. The 
+workflow described above is in fact not common, but invented ad hoc for
+this project. We were unable to find any references to a workflow similar
+to this in the literature. Some more common alternative workflows to use
+with git:
+
+\begin{itemize}
+ \item \textbf{Centralized}: 
+	Using git in a way similar to e.g. Subversion or other more traditional
+	tools still give the user some advantages. The process of branching and
+	merging is many times more well developed in git than it is in tools like
+	Subversion. A property of the distributed nature of git gives yet another
+	benefit: having all of the history available locally. You don't need
+	network to be able to see what changes was introduced to a particular
+	commit, and indeed no network to be able to see the commit log.
+
+ \item \textbf{Topic branches}: 
+  Working on a new cool, but experimental feature? Perhaps it is not as 
+  tested as the rest of the system is. You probably don't want to have 
+  it in the main code. Create a branch specifically for this "topic" or
+  "feature".
+
+ \item \textbf{Benevolent dictator}: 
+  A workflow, especially popular within open source projects, is the
+  benevolent dictator workflow. There is one designated maintainer, and
+  other contributers make "pull requests", primarily via e-mail.  If the
+  benevolent dictator accepts the patch, he or she merges it into his or
+  hers own repository, where everybody gets their source code from. The
+  name, "Benevolent dictator", is a term jokingly used about Linus
+  Torvalds, the initial author and later primary maintainer for the Linux
+  kernel (and also, the initial author of git!).
+\end{itemize}
+
+Each of these workflow are appropriate in some situations. None of these
+totally fitted the needs of the Telia project though.
+
 \section{Research Methodology}
 
 \subsection{Research Questions}

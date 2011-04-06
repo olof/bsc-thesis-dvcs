@@ -1,0 +1,135 @@
+\documentclass{article}
+
+\title{Distributed Version Control Systems}
+
+%\author{
+% \IEEEauthorblockN{Daniel Persson}
+% \IEEEauthorblockA{daniel@silvertejp.org} \and
+%
+% \IEEEauthorblockN{Olof Johansson}
+% \IEEEauthorblockA{olof@ethup.se}
+%}
+%
+%\IEEEpubid{0000--0000/00\$00~\copyright~2011}
+%
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+ Place abstract here.
+\end{abstract}
+
+%\begin{IEEEkeywords}
+% Version Control, Configuration Management
+%\end{IEEEkeywords}
+
+\section{Introduction}
+
+%\section{Background}
+%
+%\subsection{The History of Version Control}
+%The history of Version Control Systems can be divided into three
+%categories; the ones that only manages local files, the ones that rely
+%on a central server to serve connecting clients, and finally the
+%distributed ones, where every 'node' can act as both a client and a
+%server. The three categories roughly follow each other
+%chronologically, naturally with transition-periods in between. At the
+%moment the dominating tools are mostly client-server, but the
+%distributed ones are rising fast in popularity, so perhaps we are
+%currently in the start of a new transition.
+%
+%\subsubsection{The Local Era}
+%The first VCS ever released was the \emph{Source Code Control System}
+%(SCCS) in 1972. SCCS tried to solve a number of problems that software
+%developers of that time had. Manually managing several versions of the
+%same product simultaneously was not feasible in the long run for
+%several reasons described by the creator of SCCS, Marc J. Rochkind
+%\cite{sccs}:
+%
+%\begin{itemize}
+% \item The amount of space to store the source code may be several
+%       times that needed for any particular version.
+% \item Fixes made to one version sometimes fail to get made to
+%       other versions.
+% \item When changes occur it is difficult to tell exactly what changed
+%       and when.
+% \item When a customer has a problem it is hard to figure out what
+%       version he has.
+%\end{itemize}
+%
+%Instead of saving entire files in various states, SCCS stores the
+%differences between versions of the same file (called diffs, or
+%deltas). With each delta SCCS also stores metadata such as who made
+%the change, why, and when. This did not only save precious storage
+%space, but also provided the \emph{traceability} that the software
+%developers had previously lacked.
+%
+%It is worth noting that SCCS was not the only VCS that followed the
+%philosophy of storing the files locally, \emph{Revision Control
+%  System} (RCS) was released in 1982 and gradually took over as the
+%dominant VCS for Unix.
+%
+\section{Research Methodology}
+
+\subsection{Research Questions}
+Given the description in the background we intend to investigate the
+benefits and drawbacks of using that workflow. To tackle these issues
+we have identified the following research questions:
+
+\begin{itemize}
+ \item How do the developers adapt to the workflow described above?
+ \item How does the workflow affect code quality in relation to the
+       release management and code review?
+\end{itemize}
+
+By code quality we mean both adherence to the Coding Convention and
+error frequency, specifically build and automatic unit-test errors.
+
+\subsection{Research Methodology}
+To answer the questions we will conduct both a review of literature in
+the field of configuration management in general, and version control
+systems in particular, and then conduct a post-mortem analysis of the
+project. The primary means of doing the post-mortem analysis will be
+to conduct interviews with participants in their various roles. In
+addition to this we will also collect data from various project
+management and configuration management tools and systems.
+
+\subsubsection{Literature Review}
+
+
+\subsubsection{Post-mortem Analysis}
+The post-mortem analysis will primarily be based on interviews with
+participants in the Telia Smart Home project and questionnaries with
+members from other projects within the same course framework. We will
+base the interviews and questionnaries around these questions:
+
+\begin{itemize}
+ \item How would you rate your previous experience in using Version Control 
+       Systems?
+ \item How would you rate your proficiency in using Version Control Systems?
+ \item What benefits do you see in using this workflow?
+ \item What drawbacks do you see in using this workflow?
+ \item Do you have any suggestions for improvements?
+ \item What is your overall opinion of the workflow?
+\end{itemize}
+
+The post-mortem analysis will also include an analysis of various data
+collected during the project. Most of this data will come from
+different configuration and project management tools, such as Git for
+Version Control, Jenkins for continuous integration and Redmine for
+time management and issue tracking.
+
+From Git we will extract metadata related to each commit, such as
+time, size, author and commit messages, Jenkins can produce data on
+build and test errors, and from Redmine we will compile reports
+related to time spent on release management.
+
+The data collected from the project and configuration management tools
+will then be correlated with the data gained from the interviews and
+questionnaries.
+
+\bibliographystyle{plain} 
+\bibliography{references}
+
+\end{document}

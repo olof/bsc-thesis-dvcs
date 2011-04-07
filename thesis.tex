@@ -1,5 +1,7 @@
 \documentclass{article}
 
+\usepackage{graphicx}
+
 \title{Distributed Version Control Systems}
 
 %\author{
@@ -92,36 +94,10 @@ through which all changesets must pass. If the team want to have a
 centralized repository it must itself give a arbitrary repository that
 semantic meaning.
 
-The workflow designed used for the code repositories in the Telia Smart 
-Home project is based upon individual developer repositories and branches.
-Each developer has an own repository, and makes commits to this. It then
-pushes changes to a repository on a central build server. Here, a build
-is triggered using Jenkins continuous integration system and the commit is
-also forwarded to the so called "baseline" repository, but to a developer's
-private branch.
-
-The release manager is now notified that there is a commit awaiting
-approval. He or she can check build and test status on Jenkins and see the
-delta between baseline and the proposed patch. After possibly running local
-tests, the release manager can either approve and merge the commit or
-reject it and inform the author of why it wasn't suitable for inclusion.
-If the commit is merged, other developers are now able to merge it into
-their local repositories, their working copy of the source code.
-
-When designing this system, the sought benefits was the integrated code 
-review and approval system. With this, the release managers could validate 
-adherence to coding conventions as well as making sure that the system
-is buildable and all unit tests passes. Possibly, much of this could even
-have been automated (e.g. static code analysis and coding style validation
-tools are commonplace) to an even higher degree, but that is, as always, a 
-cost/benefit question.
-
-Are there any alternatives to this? Certainly. As stated twice before, git
-is indeed quite flexible. It will yield to the wishes of the user. The 
-workflow described above is in fact not common, but invented ad hoc for
-this project. We were unable to find any references to a workflow similar
-to this in the literature. Some more common alternative workflows to use
-with git:
+Are there any alternatives to be considered? Certainly. Again, git is 
+indeed quite flexible. It will yield to the wishes of the user. There are 
+a number of easily recognized workflows (perhaps not always mutually
+exclusive). Some of the most popular ones are presented here:
 
 \begin{itemize}
  \item \textbf{Centralized}: 
@@ -150,8 +126,53 @@ with git:
   kernel (and also, the initial author of git!).
 \end{itemize}
 
-Each of these workflow are appropriate in some situations. None of these
-totally fitted the needs of the Telia project though.
+\begin{figure}
+ \begin{center}
+  \includegraphics[width=\textwidth]{workflow.png}
+  \caption{Workflow description}
+  \label{fig:workflow}
+ \end{center}
+\end{figure}
+
+Each of these workflows are appropriate in some situations. However,
+none of these totally fitted the needs of the Telia project. Instead,
+the Telia Smart Home project designed its own workflow (see Figure
+\ref{fig:workflow}). The workflow used for the code repositories in the
+project is based upon individual developer repositories and branches.
+Each developer has an own repository, and makes commits to this. The
+system (with the help of so called hooks (i.e. scripts triggered by
+specific events)) then pushes changes to a repository on a central build
+server. Here, a build is triggered using the \emph{Jenkins} continuous
+integration system and the commit is also forwarded to the so called
+"baseline" repository, but only to a developer's private branch. It is
+not merged into the actual baseline code, but it is still accessible for
+other developers.
+
+The release manager is now notified that there is a commit awaiting
+approval. He or she can check build and test status on Jenkins and see the
+delta between baseline and the proposed patch. After possibly running local
+tests, the release manager can either approve and merge the commit or
+reject it, and inform the author of why it wasn't suitable for inclusion.
+If the commit is merged, other developers are now encouraged to merge it 
+into their local repositories, their working copy of the source code. 
+
+When designing this system, the sought benefits was the integrated code 
+review and approval system. With this, the release managers could validate 
+adherence to coding conventions as well as making sure that the system
+is buildable and all unit tests passes. Possibly, much of this could even
+have been automated (e.g. static code analysis and coding style validation
+tools are commonplace) to an even higher degree, but that is, as always, a 
+cost/benefit question. It is innovative and unique, but it does build upon
+the so called "benevolent dictator" workflow, especially the release
+management component of it. The success of this workflow from high-profile 
+projects like the Linux kernel has been an inspiration for the design.
+The reason why the project rejected the topic branch workflow at an early
+stage was the problems associated with topic branches in the early stages
+of a software project, where a lot of interdependencies exist and basic
+infrastructure is needed. In later stages of the project, this workflow
+would have been more feasible, but the overhead associated with switching
+workflow was deemed to high. It has been used in some rare cases, where code
+was at a very experimental stage.
 
 \section{Research Methodology}
 

@@ -52,7 +52,7 @@ The first VCS ever released was the \emph{Source Code Control System}
 developers of that time had. Manually managing several versions of the
 same product simultaneously was not feasible in the long run for
 several reasons described by the creator of SCCS, Marc J. Rochkind
-\cite{sccs}:
+\cite{rochkind75}:
 
 \begin{itemize}
  \item The amount of space to store the source code may be several
@@ -74,39 +74,41 @@ developers had previously lacked.
 
 It is worth noting that SCCS was not the only VCS that followed the
 philosophy of storing the files locally, \emph{Revision Control
-  System} (RCS) which was essentiallt a wrapper around the UNIC tool
+  System} (RCS) which was essentially a wrapper around the Unix tool
 \emph{diff} was released in 1982 and gradually started taking over as
 the dominant VCS for Unix.
 
 \subsubsection{The Client-Server Era}
 Although RCS was an improvement over SCCS it still had several flaws;
 it was still operating on single files only, and they were still
-stored locally. To be able to cooperate with his students, working on
-differing schedulues, Dick Grune created shellscripts to centrally
-manage the project they were working on through RCS. When the project
-was over he realized the potential and cleaned up the scripts and
-published them in late 1985. Two years later Brian Berliner rewrote
-the software in C, and CVS was truly born.
+stored locally. 
+
+To be able to cooperate with his students, working on differing
+schedules, Dick Grune created shell scripts to centrally manage the
+project they were working on through RCS. When the project was over he
+realized the potential and cleaned up the scripts and published them
+in late 1985. Two years later Brian Berliner rewrote the software in
+C, and CVS was born.
 
 CVS introduced all the modern terminology we use today when we talk
 about version control; the code is stored in a \emph{repository} that
 users can \emph{check out} a \emph{working copy} from. Terms such as
-\emph{commiting} code and \emph{merging} changes was also introduced
+\emph{committing} code and \emph{merging} changes was also introduced
 by CVS. It also made \emph{branching} a bit less cumbersome than it
-had been in RCS although merging the branches still required alot of
+had been in RCS although merging the branches still required a lot of
 work.
 
-With CVS in the frontline and with proprietary version control systems
-starting to pop up in the early nineties the model of a central server
-that contained the repository that everyone worked in became the
-standard way to think about version control.
+With CVS in the front line and with proprietary version control
+systems starting to pop up in the early nineties the model of a
+central server that contained the repository that everyone worked in
+became the standard way to think about version control.
 
 Although CVS simplified and popularized the use of version control
-systems it has still recieved its fair share of criticism. For example
+systems it has still received its fair share of criticism. For example
 the revision numbers are created on a per file basis, which means that
 the latest revision number is not the same across the board which can
 sometimes be confusing. Other things like not handling symbolic links
-for example is claimed by the CVS developers to be carefulle planned
+for example is claimed by the CVS developers to be carefully planned
 features (in the case of symbolic links due to security concerns)
 rather than bugs, but as the issues started to pile up Collabnet
 (founded by Tim O'Reilly that founded \emph{O'Reilly Media} and Brian
@@ -117,26 +119,28 @@ Subversion was released in 2000, and solved many of the issues that
 CVS had, while still maintaining the same working style of
 CVS. Subversion didn't really introduce any revolutionary ideas, but
 rather focused on the weaknesses of CVS like versioning of symbolic
-links, versioning for directories and file metadata and truly atomic commits
-(meaning if the transmission between client and server is interrupted,
-the commit is rolled back rather than processed half-way; in CVS this
-would cause inconsistencies or corrupted data).
+links, versioning for directories and file metadata and truly atomic
+commits (meaning if the transmission between client and server is
+interrupted, the commit is rolled back rather than processed half-way,
+much like transaction in a database --- in CVS this wasn't the case,
+and it could cause inconsistencies or corrupted data if it happened).
 
 Other systems such as IBM's ClearCase and Microsoft's Visual
-SourceSafe and Team Foundation Server but never reached the same
-popularity as CVS (that even to date manages a significant amount of
-projects) and Subversion (that is currently the most popular tool for
-version control) due to its proprietary licencing.
+SourceSafe and Team Foundation Server existed, but never reached the
+same popularity as CVS (that even to date manages a significant amount
+of projects) and Subversion (that is currently the most popular tool
+for version control) due to its proprietary licensing.
 
 \subsubsection{The Distributed Era}
 
-The next innovation came from the open source community, where there
+The next innovation came from the open source community, where the
 centralized approach of CVS and Subversion didn't come as natural as
 it perhaps does in the corporate domain. Instead of storing the
-repository on a centralized server, version control systems like GNU
-Arch and Monotone stored a copy of the repository on every client that
-checked out a working copy. That way developers could always have
-access to the full history even without an internet connection. 
+repository on a centralized server, distributed version control
+systems like GNU Arch and Monotone stored a copy of the repository on
+every client that checked out a working copy. That way developers
+could always have access to the full history even without an internet
+connection.
 
 One of the first distributed version control systems, BitKeeper,
 infamously withdrew the rights for the Linux kernel project to freely
@@ -144,12 +148,12 @@ use BitKeeper (which was a proprietary system) which sparked Linus
 Torvalds to create a new, free tool: Git. 
 
 The main goal with git was to create a version control system that
-supported a BitKeeper-like workflow with high performance and strng
+supported a BitKeeper-like workflow with high performance and strong
 integrity control. Since Linus also has a passionate hatred for CVS he
 has also said ironically that if there is any doubt in any design
 choice to be made, the opposite of the one CVS took is the way to go.
 
-Git has in the past few years seen a stead growth in users and
+Git has in the past few years seen a steady growth in users and
 projects, and while the numbers compared to Subversion is still quite
 small, the change speed is pointing straight up.
 

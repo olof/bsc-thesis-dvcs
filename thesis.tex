@@ -266,9 +266,9 @@ benefits and drawbacks of using that workflow. To tackle these issues
 we have identified the following research questions:
 
 \begin{itemize}
- \item How do the developers adapt to the workflow described above?
- \item How does the workflow affect code quality in relation to the
-       release management and code review?
+ \item How do the developers adapt to a distributed workflow?
+ \item How does a distributed workflow affect code quality in relation
+       to the release management and code review?
 \end{itemize}
 
 By code quality we mean both adherence to the Coding Convention and
@@ -395,8 +395,9 @@ in 3rd Workshop on Open Source Software Engineering\cite{shaikh02}.
 \end{abstract}
 
 The described problems with introducing a distributed version control
-system into a such a large project as the Linux kernel, may give us 
-insight into the adaption process.
+system into a such a large project as the Linux kernel, may give us
+insight into the adaption process. This paper relates to research
+question 1.
 
 \subsubsection{Making Sense of Revision-Control Systems}
 
@@ -435,9 +436,10 @@ An article by D. Roundy, written in 2005 and published in Proceedings of the
  that is possible).
 \end{abstract}
 
-A case study into a specific distributed version control system. Even though
-the paper deals in large parts with the implementation details, the actual
-usage and interaction with the system is described.
+A case study into a specific distributed version control system. Even
+though the paper deals in large parts with the implementation details,
+the actual usage and interaction with the system is described. This
+paper relates to research question 1.
 
 \subsubsection{Towards a Better SCM: Revlog and Mercurial}
 
@@ -461,9 +463,10 @@ Symposium\cite{mackall06}.
  communicate between repositories.
 \end{abstract}
 
-Yet another case study into a specific distributed version control system.
-Again, this also deals with technical details, but the interaction and usage
-pattern is interesting for our research.
+Yet another case study into a specific distributed version control
+system.  Again, this also deals with technical details, but the
+interaction and usage pattern is interesting for our research. This
+paper relates to research question 1.
 
 \subsubsection{The Promises and Perils of Mining Git}
 
@@ -491,9 +494,10 @@ Working Conference on Mining Software Repositories\cite{bird09}.
  when mining and analyzing git data.
 \end{abstract}
 
-And a third (and final) case study into a specific version control system.
-This paper does not primarily deal with technical details however, and
-instead focusing on interaction details. 
+And a third (and final) case study into a specific version control
+system.  This paper does not primarily deal with technical details
+however, and instead focusing on interaction details. This paper
+relates to research question 1.
 
 \subsubsection{Why Are Software Projects Moving From Centralized to
                Decentralized Version Control Systems?}
@@ -514,7 +518,7 @@ Engineering\cite{alwis09}.
 
 This paper is relevant to us and important for us to understand the reasons
 for migration, and as a reference for comparisons with centralized version 
-control systems.
+control systems. This paper relates to research question 1.
 
 \subsubsection{DVCS or a new way to use Version Control Systems for FreeBSD}
 
@@ -545,8 +549,9 @@ An article by O. Robert, written in 2006\cite{robert06}.
 \end{abstract}
 
 A paper dealing with a potential migration from a centralized version
-control system (CVS), to a decentralized. What would be the benefits for
-the FreeBSD project? What would be the drawbacks?
+control system (CVS), to a decentralized. What would be the benefits
+for the FreeBSD project? What would be the drawbacks? This paper
+relates to research question 1.
 
 \subsubsection{BitKeeper for Kernel Developers}
 
@@ -565,11 +570,12 @@ Ottawa Linux Symposium\cite{henson02}.
  kernel developers.
 \end{abstract}
 
-Bitkeeper is a distributed version control system, and was for a long time
-used by the Linux kernel developers for their version control needs. Even
-though it was surrounded with controversy, due to its non-free, proprietary
-status and hostility against reverse engineering, it was still a major
-breakthrough for distributed version control. 
+Bitkeeper is a distributed version control system, and was for a long
+time used by the Linux kernel developers for their version control
+needs. Even though it was surrounded with controversy, due to its
+non-free, proprietary status and hostility against reverse
+engineering, it was still a major breakthrough for distributed version
+control. This paper relates to research question 1.
 
 \subsubsection{Software Configuration Management: A Roadmap}
 
@@ -586,9 +592,10 @@ the conference on The future of Software engineering\cite{estublier00}.
  SCM has to take up, as well as SCM future research are discussed.
 \end{abstract}
 
-This paper is a general overview of the configuration management field. It
-is useful as a basis and context for our research into a specific
-configuration management concept and technology, namely version control.
+This paper is a general overview of the configuration management
+field. It is useful as a basis and context for our research into a
+specific configuration management concept and technology, namely
+version control. This paper relates to research question 1.
 
 \subsubsection{Learning by Doing: Introducing Version Control as a Way to
                Manage Student Assignments}
@@ -610,10 +617,52 @@ ACM SIGCSE Bulletin\cite{reid05}.
  fundamental software development tool.
 \end{abstract}
 
-As a large part of our research will be about adaptability and ability to
-learn and understand our workflow, it is interesting to see other
-experiences within version control education. How did the students adapt to
-this somewhat unorthodox assignment submission system?
+As a large part of our research will be about adaptability and ability
+to learn and understand our workflow, it is interesting to see other
+experiences within version control education. How did the students
+adapt to this somewhat unorthodox assignment submission system? This
+paper relates to research question 1.
+
+\subsubsection{Software quality: the elusive target}
+
+An article by B. Kitchenham, and S.L. Pfleeger, written in 1996 and
+published in IEEE Software\cite{kitchenam96}.
+
+\begin{abstract}
+ If you are a software developer,manager or maintainer, quality is
+ often on your mind. But what do you really mean by software quality?
+ Is your definition adequate? Is the software you produce better or
+ worse than you would like it to be? In this special issue, we put
+ software quality on trial, examining both the definition and
+ evaluation of our software products and processes.
+\end{abstract}
+
+This paper relates to research question 2.
+
+\subsubsection{A practical view of software measurement and
+  implementation experiences within Motorola}
+
+An article by M.K. Daskalantonakis, written in 1992 and published in
+IEEE Transactions on Software Engineering.
+
+\begin{abstract}
+ The purpose of this paper is to describe a practical view of
+ software measurement that formed the basis for a company-wide
+ software metrics initiative within Motorola. A multi-dimensional
+ view of measurement is provided by identi- fying different
+ dimensions (e.g., metric usefulness/utility, metric types or
+ categories, metric audiences, etc.) that were considered in this
+ company-wide metrics implementation process. The defi- nitions of
+ the common set of Motorola sofiware metrics, as well as the charts
+ used for presenting these metrics, are included. The metrics were
+ derived using the GoaVQuestiodMetric approach to measurement. The
+ paper distinguishes between the use of metrics for process
+ improvement over time across projects and the use of metrics for
+ in-process project control. Important experiences in implementing
+ the software metrics initiative within Motorola are also included.
+\end{abstract}
+
+This paper relates to research question 2.
 
 \bibliographystyle{plain} 
 \bibliography{references}

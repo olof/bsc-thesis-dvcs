@@ -321,6 +321,41 @@ centralized VCS. In short, there will have to be a lot of
 documentation of procedures, tools and workflows when migrating to a
 new VCS --- especially a DVCS \cite{alwis09}.
 
+
+\subsection{Quality Implications}
+
+The fact that most operations are so fast in DVCSes will have an
+impact on how people work with their SCM tools. The fact that
+branching is such a cheap operation will encourage developers to
+actually use branches where they see fit, without taking things like
+workload on a central server, namespace pollution, or wait times into
+consideration. Coupled with the fact that merging branches is
+relatively painless --- and thus resulting in merging being done when it
+should, instead of being postponed to delay the suffering for the
+developer, creating unnecessary conflicts and more suffering --- will
+in turn lead to a more thorough and in a sense more correct use of the
+VCS, resulting in a better history and potentially better code.
+
+Another powerful tool that can be used more frequently due to the huge
+performance-benefits that DVCSes provide is \verb!bisect!. It is very
+easy to use, but can prove to be very useful in finding bugs, or
+rather finding out when they are introduced. What \verb!bisect! does
+is basically a binary search between two revisions (between which you
+know that a bug is introduced) by checking out revisions and asking
+the developer if the bug is present or not. Provided that the bug can
+be replicated with for example a script, this task can be automated
+fairly easy, and the fact that everything runs locally keeps the
+performance up, and prevents the network from being congested.
+Needless to say, when looking for a particular bug it is a huge
+advantage to know the exact commit that introduced it.
+
+Since the primary mean of sharing and spreading code in a DVCS
+workflow is by pulling other peoples changes into a local repository,
+introducing quality practices like \emph{code reviews} fits in very
+well. Whenever anyone pull code from someone else, they simply look at
+the diff, and if it does not meet the agreed upon quality standards,
+they don't merge them until they do\cite{osullivan09}.
+
 %* migration costs
 %  + interface design
 %    - commit id

@@ -2,7 +2,7 @@
 
 \usepackage{graphicx}
 
-\title{Distributed Version Control}
+\title{Distributed Version Control Workflows}
 \author{Olof Johansson \and Daniel Persson}
 \institute{Blekinge Institute of Technology}
 
@@ -265,34 +265,88 @@ was at a very experimental stage.
 
 \section{Literature Review}
 
-* in common
+%* in common
 
-* migration costs
-  + interface design
-    - commit id
-    - decoupled commit/merge
-  + nomenclature 
+\subsection{Migration costs}
 
-* vcs architecture 
-  + non-commiter access
-  + commit access whoring
-  + code review
-  + offline/disconnected work
-  + "backup"
-  + no locking support
-  + binary handling
-  + hard to delete history
+There a large number of open source as well as proprietary projects
+moving to one of the major distributed version control system; Perl,
+Curl and Parrot are projects that all has migrated to Git, from their
+earlier centralized VCSes\footnote{
+ Perl migrated from Perforce, Curl from CVS and Parrot from Subversion.
+}. The migrations has not always been cheap, e.g. the Perl migration 
+took 22 months \cite{alwis09}, so they must have had good reasons to 
+do it. We will try to see why this might have been in the next few
+subsections.
 
-* technology
-  + performance / scalability
-  + merging 
-  + branches
+A migration of VCS is twofold. There is migration of the repository,
+with moving every commit with its meta data and authorship
+information, every branch and every tag to the new VCS, making sure
+that nothing is lost and that nothing is broken. A problem in its own
+right, but with a lot of tools available producing generally good
+results. The other side, however, is migrating the developers and the
+workflows. Changes in interface design requires every developer to
+"relearn" the various actions and tools used. Something as trivial as
+commit IDs are different and has become a problem for some
+\cite{alwis09} --- the centralized VCSes commonly use incremental
+integers to identify a commit; DVCSes usually use a checksum of the
+content instead. The incrementing integers says more to a human when
+comparing two commits, which of the two commits are the newest, and
+perhaps gives a hint about how much newer \cite{bird09}. The loss is
+an unfortunate effect of the distributed nature of DVCS. As every
+repository is "isolated" from each other, and only interacts when
+merging with each other, they can not know what numeric ID they should
+give to a commit to make it globally unique and still retain the
+incremental property.  So instead checksums are used; well known
+algorithms are used to calculate a large value based on the contents
+of the commit. This difference between DVCS and VCS is one of the
+first a new DVCS user encounters.
 
-* QA
-  + code review
-  + efficient tools
-    - branch workflows
-    - bisect
+Another change from centralized VCS is the decoupling of committing
+and merging. This makes it a two command operation to do the
+equivalent of "svn commit". Looking past the short term
+impracticalities of having to do two commands to merge with a central
+server, it gives the developer freedom to not merge at all, or not
+merge "right now". Perhaps it is not even possible to merge --- as is
+the case in airplanes or being in remote areas and no network
+connectivity is available.
+
+An other change, not a change in the interface but a change of VCS
+nomenclature, is perhaps an even bigger obstacle for migration
+\cite{bird09}. Some words are introduced, some words are removed and
+some words are redefined. Committing is, as described, no longer
+publishing your changes in the central repository. Pulling and pushing
+are common words within DVCS for things that don't even exist in a
+centralized VCS. In short, there will have to be a lot of
+documentation of procedures, tools and workflows when migrating to a
+new VCS --- especially a DVCS \cite{alwis09}.
+
+%* migration costs
+%  + interface design
+%    - commit id
+%    - decoupled commit/merge
+%  + nomenclature 
+%
+%* vcs architecture 
+%  + non-commiter access
+%  + commit access whoring
+%  + code review
+%  + offline/disconnected work
+%  + "backup"
+%  + no locking support
+%  + binary handling
+%  + hard to delete history
+%
+%* technology
+%  + performance / scalability
+%  + merging 
+%  + branches
+%
+%* QA
+%  + code review
+%  + efficient tools
+%    - branch workflows
+%    - bisect
 
 \section{Post-mortem Analysis}
 

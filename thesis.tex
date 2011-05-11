@@ -406,13 +406,51 @@ well. Whenever anyone pull code from someone else, they simply look at
 the diff, and if it does not meet the agreed upon quality standards,
 they don't merge them until they do\cite{osullivan09}.
 
-\section{Post-mortem Analysis}
+\section{Results Post-mortem Analysis}
+
+
+From the conducted interviews it is noticable that survey participants
+rated their proficiency with DVCSes the same as with VCSes in general.
+
+Regarding the workflow employed by the Telia Smart Home (TSH)
+project, the survey conducted resulted in generally positive feedback,
+with only some minor reservations. Some concern was raised regarding
+the way the project ``abused git'' in the way branches were
+automatically re-pushed to branches in the mainline
+repository. A problem with the release manager approach was that it
+easily becomes a bottleneck, if for example the release manager is
+absent or busy. Several survey participants claimed to have
+experienced this problem. Another survey participant noted that the
+workflow looked more complex than it really was. Other participants
+noted that the code review came natural and worked well, and that the
+mainline build was rarely broken.
 
 \section{Discussion}
 
-\section{Conclusion}
+The re-pushing of branches could very well have been excluded from the
+workflow, the reasons for having it was to ease the work for release
+managers by having all changes in one repository and not spread
+out. The other reason was to allow easy overview in the issue tracking
+system (Redmine) which was limited to only show one repository.
 
-\section{Future Work}
+The release management criticism is not in any way limited to the TSH
+workflow, it is present in any workflow using a review process to
+accept and merge commits. One possible solution could be for example
+having a dedicated person for the review process, but in this project
+the cost would have been too big. Sharing the responsibility of
+release management between several people could also remove the
+downtime of the review process when the release manager is
+absent. Overall the release management and code review has worked
+well, with few hick-ups, and as figure \ref{fig:breakage} shows, the
+mainline build was broken relatively few times, and only for short
+periods of time.
+
+\begin{figure}
+  \caption{FIXME}
+  \label{fig:breakage}
+\end{figure}
+
+\section{Conclusion}
 
 \bibliographystyle{plain} 
 \bibliography{references}

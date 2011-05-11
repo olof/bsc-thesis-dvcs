@@ -358,22 +358,6 @@ This limits the phenomenon known as "commit whoring" or "commit
 politics", where people try to get commit access just for the sake of
 it (as a status symbol).
 
-%* vcs architecture 
-% -+ non-commiter access
-% -+ commit access whoring
-% -+ offline/disconnected work
-% -+ "backup"
-% -+ no locking support
-%  + binary handling
-% -+ hard to delete history
-
-
-%* technology
-%  + performance / scalability
-%  + merging 
-%  + branches
-%  + limit netuse
-
 \subsection{Performance}
 
 The fact that anyone using a DVCS is working with a local repository
@@ -421,33 +405,6 @@ introducing quality practices like \emph{code reviews} fits in very
 well. Whenever anyone pull code from someone else, they simply look at
 the diff, and if it does not meet the agreed upon quality standards,
 they don't merge them until they do\cite{osullivan09}.
-
-%* migration costs
-%  + interface design
-%    - commit id
-%    - decoupled commit/merge
-%  + nomenclature 
-%
-%* vcs architecture 
-%  + non-commiter access
-%  + commit access whoring
-%  + code review
-%  + offline/disconnected work
-%  + "backup"
-%  + no locking support
-%  + binary handling
-%  + hard to delete history
-%
-%* technology
-%  + performance / scalability
-%  + merging 
-%  + branches
-%
-%* QA
-%  + code review
-%  + efficient tools
-%    - branch workflows
-%    - bisect
 
 \section{Post-mortem Analysis}
 

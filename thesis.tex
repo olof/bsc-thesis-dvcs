@@ -2,7 +2,7 @@
 
 \usepackage{graphicx}
 
-\title{Distributed Version Control Workflows}
+\title{Workflows and Distributed Version Contro}
 \author{Olof Johansson \and Daniel Persson}
 \institute{Blekinge Institute of Technology}
 
@@ -321,6 +321,51 @@ centralized VCS. In short, there will have to be a lot of
 documentation of procedures, tools and workflows when migrating to a
 new VCS --- especially a DVCS \cite{alwis09}.
 
+\subsection{Architecture}
+
+As mentioned in the section on migration costs, the fundamental
+differences in the distributed version control architecture vis a vis 
+the centralized ditto makes it hard to transfer workflows and
+techniques directly. The differences do make it possible to other
+things and brings number of benefits together with its disadvantages.
+
+The distributed nature means that you have certain limitations on what
+can be done to enforce synchronization: e.g. there is no file locking
+support (making sure that only one developer works on a certain file
+at a time) \cite{osullivan09} and it's harder to impose automated
+content control. It makes it hard to delete history --- this would
+have been problematic for e.g. the FreeBSD developers when they were
+forced by a court decision to cease distribution of certain older
+components \cite{alwis09}. But by the same token, it works as an
+implicit distributed backup system, where each checked out repository
+is a repository in its own right. Data loss at a single node won't be
+a critical issue, as the complete repository with content and history
+is replicated numerous times \cite{alwis09}. Another benefit from the
+distributed architecture of DVCS is the ability to work independently,
+isolated from the central repository. With this, a developer could
+work when travelling to or from remote offices or conferences
+\cite{alwis09}\cite{robert06}.
+
+The research done in the field has largely depended on the activities
+of various open source projects, with its wealth of openly accessible
+data and discussions \cite{alwis09}\cite{bird09}. These kind of
+projects has some specific problems and needs, some which only has a
+limited effect on non open source projects. One positive effect of
+distributed version control systems is that it lowers the bar for new
+contributors. They can easily fork a project and commit changes, and
+then make a request to be merged into the mainline \cite{alwis09}.
+This limits the phenomenon known as "commit whoring" or "commit
+politics", where people try to get commit access just for the sake of
+it (as a status symbol).
+
+%* vcs architecture 
+% -+ non-commiter access
+% -+ commit access whoring
+% -+ offline/disconnected work
+% -+ "backup"
+% -+ no locking support
+%  + binary handling
+% -+ hard to delete history
 
 \subsection{Quality Implications}
 
@@ -384,6 +429,8 @@ they don't merge them until they do\cite{osullivan09}.
 %    - bisect
 
 \section{Post-mortem Analysis}
+
+\section{Discussion}
 
 \section{Conclusion}
 

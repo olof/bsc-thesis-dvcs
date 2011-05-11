@@ -367,6 +367,24 @@ it (as a status symbol).
 %  + binary handling
 % -+ hard to delete history
 
+
+%* technology
+%  + performance / scalability
+%  + merging 
+%  + branches
+%  + limit netuse
+
+\subsection{Performance}
+
+The fact that anyone using a DVCS is working with a local repository
+has big impacts on performance. In a CVCS every operation requires
+access to the central server, and thus adds network latency to every
+operation. Additionally, every developer that works towards the same
+central server adds more to its workload, making it scale quite
+badly. In contrast, DVCSes do not work towards the same server, even
+though some repositories are perhaps considered 'more important' than
+others, and thus scales very well almost any amount of developers.
+
 \subsection{Quality Implications}
 
 The fact that most operations are so fast in DVCSes will have an

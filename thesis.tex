@@ -59,7 +59,7 @@ server. The three categories roughly follow each other
 chronologically, naturally with transition-periods in between. At the
 moment the dominating tools are mostly client-server, but the
 distributed ones are rising fast in popularity, so perhaps we are
-currently in the start of a new transition.v
+currently in the start of a new transition.
 
 \subsection{The Local Era}
 The first VCS ever released was the \emph{Source Code Control System}
@@ -832,6 +832,68 @@ to learn and understand our workflow, it is interesting to see other
 experiences within version control education. How did the students
 adapt to this somewhat unorthodox assignment submission system? This
 paper relates to research question 1.
+
+\subsubsection{RCS --- A System for Version Control}
+
+An article by W.F. Tichy written in 1985 and published in Software:
+Practice and Experience.
+
+\begin{abstract}
+ An important problem in program development and maintenance is
+ version control, i.e., the task of keeping a software system
+ consisting of many versions and configurations well organized. The
+ Revision Control System (RCS) is a software tool that assists with
+ that task. RCS manages revisions of text documents, in particular
+ source programs, documentation, and test data. It automates the
+ storing, retrieval, logging and identification of revisions, and
+ it provides selection mechanisms for composing configurations. This
+ paper introduces basic version control concepts and discusses the
+ practice of version control using RCS. For conserving space, RCS
+ stores deltas, i.e., differences between successive
+ revisions. Several delta storage methods are discussed.  Usage
+ statistics show that RCSs delta storage method is space and time
+ efficient. The paper concludes with a detailed survey of version
+ control tools.
+\end{abstract}
+
+This paper thoroughly describes RCS, and how it is designed. It is
+important to understand basic concepts of this to answer both research
+questions.
+
+\subsubsection{Concurrent Versions System, A Method for Independent
+  Cooperation}
+
+An article D. Grune written in 1986 and published in Report IR-114,
+Vrije University.
+
+\begin{abstract}
+ People working together on a set of files in real-world
+ circumstances may often interfere with each other. To avoid such
+ interference, the idea of an abstract data type can be used. The
+ abstract data type introduced here consists of a single repository,
+ containing versions of the files, together with a (small) number of
+ access routines. Each participant has his own copy of a set of files
+ as represented by the repository, and uses essentially two access
+ routines, one to merge into his copy changes made to the repository
+ by others, and one to merge changes in his copy into the
+ repository. (There are several other access routines, for listing
+ contents, examining differences, etc.) The abstraction is not
+ perfect, but violations (conflicts) are generally detected and
+ reported.
+
+ The implementation of the abstract data type “repository” starts
+ from version control primitives that can handle a single file and
+ then coordinates their actions. All access routines are programmed
+ as UNIX † shell scripts and use the RCS programs as version control
+ primitives. In programming the access routines, many more
+ possibilities had to be taken into account than was intuitively
+ reasonable. Examples are given.
+\end{abstract}
+
+Similar to the RCS paper, this paper is about CVS, and is also written
+by its creator. With CVS being a major influence on most modern VCSs,
+this is also imperative for the understanding of basic version control
+concepts. This paper relates to research question 1.
 
 \subsubsection{Software quality: the elusive target}
 

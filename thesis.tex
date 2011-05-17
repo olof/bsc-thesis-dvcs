@@ -21,25 +21,35 @@
 
 \section{Introduction}
 
-As part of a software engineering project at Blekinge Institute of
-Technology, the authors are investigating the use of version control
-systems (VCS), specifically distributed VCS (DVCS), in the context of
-the project (through a post-mortem analysis (data collections, 
-interviews and observations)) and more generally through the use of a
-literature review. The paper will try to answer the following questions:
+We intend to investigate the adoption of the new trend within version
+control systems (VCS) --- distributed version control systems (DVCS)
+--- within the field of software engineering. The use of DVCS has
+increased in the last years, with the introduction of several
+implementations. The move from centralized version control to DVCS may
+not always be unproblematic due to conceptual differences. It is
+important to investigate the benefits and challenges of DVCS in order
+to let software projects make informed decisions in their choice of,
+and use of, version control systems. The research will be conducted as
+a literature review, and as a post-mortem analysis of a student run
+software project. The paper will try to answer the following questions:
 
-\begin{itemize}
+\begin{enumerate}
  \item How do the developers adapt to a distributed workflow?
  \item How does a distributed workflow affect code quality in relation
        to the release management and code review?
-\end{itemize}
+\end{enumerate}
 
-The primary means of doing the post-mortem analysis will be
-to conduct interviews with participants in their various roles. In
-addition to this we will also collect data from various project
-management and configuration management tools and systems.
+In Section \ref{sec:background} we introduce the concepts of VCS and
+give a brief history of its evolution. In Section \ref{sec:telia} we
+introduce the student run Telia Smart Home project with focus of its
+use of version control systems. The primary means of doing the
+post-mortem analysis will be to conduct interviews with participants
+in their various roles. In addition to this we will also collect data
+from various project management and configuration management tools and
+systems.
 
 \section{Background}
+\label{sec:background}
 
 The history of Version Control Systems can be divided into three
 categories; the ones that only manages local files, the ones that rely
@@ -164,107 +174,6 @@ go\cite{torvalds07}.
 Git has in the past few years seen a steady growth in users and
 projects, and while the numbers compared to Subversion is still quite
 small, the change speed is pointing straight up\cite{bird09}.
-
-\subsection{VCS Workflow}
-
-VCS can be used in a number of ways. Some limits are posed by the choice
-of tools. Subversion is built for centralized version control, whereas
-tools like git or mercurial are built for decentralized. Members of the 
-latter category are generally more flexible; e.g. git is almost as simple 
-to run centralized as running it decentralized as it is intended. The 
-Telia Smart Home project has chosen to use git. The reasons for this are
-several: the ability to use git decentralized as well a centralized was a
-major point. Also, the prior experience from some members of the project
-made the transition for other members less burdensome.
-
-But defining a workflow does not end with selecting a tool. As stated, 
-git is very flexible in the way developers interact with it. It is not
-uncommon to use it centralized, and in fact, the Telia Smart Home project
-does just this in their documentation repository. But one of the key 
-strength is its decentralization. It has no enforced "central repository"
-through which all changesets must pass. If the team want to have a 
-centralized repository it must itself give a arbitrary repository that
-semantic meaning.
-
-Are there any alternatives to be considered? Certainly. Again, git is 
-indeed quite flexible. It will yield to the wishes of the user. There are 
-a number of easily recognized workflows (perhaps not always mutually
-exclusive). Some of the most popular ones are presented here:
-
-\begin{itemize}
- \item \textbf{Centralized}: 
-  Using git in a way similar to e.g. Subversion or other more traditional
-  tools still give the user some advantages. The process of branching and
-  merging is many times more well developed in git than it is in tools like
-  Subversion. A property of the distributed nature of git gives yet another
-  benefit: having all of the history available locally. You don't need
-  network to be able to see what changes was introduced to a particular
-  commit, and indeed no network to be able to see the commit log.
-
- \item \textbf{Topic branches}: 
-  Working on a new cool, but experimental feature? Perhaps it is not as 
-  tested as the rest of the system is. You probably don't want to have 
-  it in the main code. Create a branch specifically for this "topic" or
-  "feature".
-
- \item \textbf{Benevolent dictator}: 
-  A workflow, especially popular within open source projects, is the
-  benevolent dictator workflow. There is one designated maintainer, and
-  other contributers make "pull requests", primarily via e-mail.  If the
-  benevolent dictator accepts the patch, he or she merges it into his or
-  hers own repository, where everybody gets their source code from. The
-  name, "Benevolent dictator", is a term jokingly used about Linus
-  Torvalds, the initial author and later primary maintainer for the Linux
-  kernel (and also, the initial author of git!).
-\end{itemize}
-
-\begin{figure}
- \begin{center}
-  \includegraphics[scale=0.5]{workflow.png}
-  \caption{Workflow description}
-  \label{fig:workflow}
- \end{center}
-\end{figure}
-
-Each of these workflows are appropriate in some situations. However,
-none of these totally fitted the needs of the Telia project. Instead,
-the Telia Smart Home project designed its own workflow (see Figure
-\ref{fig:workflow}). The workflow used for the code repositories in the
-project is based upon individual developer repositories and branches.
-Each developer has an own repository, and makes commits to this. The
-system (with the help of so called hooks (i.e. scripts triggered by
-specific events)) then pushes changes to a repository on a central build
-server. Here, a build is triggered using the \emph{Jenkins} continuous
-integration system and the commit is also forwarded to the so called
-"baseline" repository, but only to a developer's private branch. It is
-not merged into the actual baseline code, but it is still accessible for
-other developers.
-
-The release manager is now notified that there is a commit awaiting
-approval. He or she can check build and test status on Jenkins and see the
-delta between baseline and the proposed patch. After possibly running local
-tests, the release manager can either approve and merge the commit or
-reject it, and inform the author of why it wasn't suitable for inclusion.
-If the commit is merged, other developers are now encouraged to merge it 
-into their local repositories, their working copy of the source code. 
-
-When designing this system, the sought benefits was the integrated code 
-review and approval system. With this, the release managers could validate 
-adherence to coding conventions as well as making sure that the system
-is buildable and all unit tests passes. Possibly, much of this could even
-have been automated (e.g. static code analysis and coding style validation
-tools are commonplace) to an even higher degree, but that is, as always, a 
-cost/benefit question. It is innovative and unique, but it does build upon
-the so called "benevolent dictator" workflow, especially the release
-management component of it. The success of this workflow from high-profile 
-projects like the Linux kernel has been an inspiration for the design.
-The reason why the project rejected the topic branch workflow at an early
-stage was the problems associated with topic branches in the early stages
-of a software project, where a lot of interdependencies exist and basic
-infrastructure is needed. In later stages of the project, this workflow
-would have been more feasible, but the overhead associated with switching
-workflow was deemed to high. It has been used in some rare cases, where code
-was at a very experimental stage.
 
 \section{Literature Review}
 
@@ -408,6 +317,119 @@ introducing quality practices like \emph{code reviews} fits in very
 well. Whenever anyone pull code from someone else, they simply look at
 the diff, and if it does not meet the agreed upon quality standards,
 they don't merge them until they do\cite{osullivan09}.
+
+\section{The Telia Smart Home Project Context}
+\label{sec:telia}
+
+The last semester of the Software Engineering program at Blekinge
+Institute of Technology is concluded with a large group software
+engineering project. Within this course, the students are put in
+charge of themselves organizing and execution a software project for a
+customer from the industry. The authors of this paper participated in
+one such project, \emph{Telia Smart Home}. The project team consisted
+of eight students. The choice of project methodology and tools was put
+in the hands of the students.
+
+When choosing a VCS the project members had a number of considerations
+to account for. VCS can be used in a number of ways. Some limits are
+posed by the choice of tools. Subversion is built for centralized
+version control, whereas tools like git or mercurial are built for
+decentralized. Members of the latter category are generally more
+flexible; e.g. git is almost as simple to run centralized as running
+it decentralized as it is intended. The Telia Smart Home project has
+chosen to use git. The reasons for this are several: the ability to
+use git decentralized as well a centralized was a major point. Also,
+the prior experience from some members of the project made the
+transition for other members less burdensome.
+
+But defining a workflow does not end with selecting a tool. As stated, 
+git is very flexible in the way developers interact with it. It is not
+uncommon to use it centralized, and in fact, the Telia Smart Home project
+does just this in their documentation repository. But one of the key 
+strength is its decentralization. It has no enforced "central repository"
+through which all changesets must pass. If the team want to have a 
+centralized repository it must itself give a arbitrary repository that
+semantic meaning.
+
+Are there any alternatives to be considered? Certainly. Again, git is 
+indeed quite flexible. It will yield to the wishes of the user. There are 
+a number of easily recognized workflows (perhaps not always mutually
+exclusive). Some of the most popular ones are presented here:
+
+\begin{itemize}
+ \item \textbf{Centralized}: 
+  Using git in a way similar to e.g. Subversion or other more traditional
+  tools still give the user some advantages. The process of branching and
+  merging is many times more well developed in git than it is in tools like
+  Subversion. A property of the distributed nature of git gives yet another
+  benefit: having all of the history available locally. You don't need
+  network to be able to see what changes was introduced to a particular
+  commit, and indeed no network to be able to see the commit log.
+
+ \item \textbf{Topic branches}: 
+  Working on a new cool, but experimental feature? Perhaps it is not as 
+  tested as the rest of the system is. You probably don't want to have 
+  it in the main code. Create a branch specifically for this "topic" or
+  "feature".
+
+ \item \textbf{Benevolent dictator}: 
+  A workflow, especially popular within open source projects, is the
+  benevolent dictator workflow. There is one designated maintainer, and
+  other contributers make "pull requests", primarily via e-mail.  If the
+  benevolent dictator accepts the patch, he or she merges it into his or
+  hers own repository, where everybody gets their source code from. The
+  name, "Benevolent dictator", is a term jokingly used about Linus
+  Torvalds, the initial author and later primary maintainer for the Linux
+  kernel (and also, the initial author of git!).
+\end{itemize}
+
+\begin{figure}
+ \begin{center}
+  \includegraphics[scale=0.5]{workflow.png}
+  \caption{Workflow description}
+  \label{fig:workflow}
+ \end{center}
+\end{figure}
+
+Each of these workflows are appropriate in some situations. However,
+none of these totally fitted the needs of the Telia project. Instead,
+the Telia Smart Home project designed its own workflow (see Figure
+\ref{fig:workflow}). The workflow used for the code repositories in the
+project is based upon individual developer repositories and branches.
+Each developer has an own repository, and makes commits to this. The
+system (with the help of so called hooks (i.e. scripts triggered by
+specific events)) then pushes changes to a repository on a central build
+server. Here, a build is triggered using the \emph{Jenkins} continuous
+integration system and the commit is also forwarded to the so called
+"baseline" repository, but only to a developer's private branch. It is
+not merged into the actual baseline code, but it is still accessible for
+other developers.
+
+The release manager is now notified that there is a commit awaiting
+approval. He or she can check build and test status on Jenkins and see the
+delta between baseline and the proposed patch. After possibly running local
+tests, the release manager can either approve and merge the commit or
+reject it, and inform the author of why it wasn't suitable for inclusion.
+If the commit is merged, other developers are now encouraged to merge it 
+into their local repositories, their working copy of the source code. 
+
+When designing this system, the sought benefits was the integrated code 
+review and approval system. With this, the release managers could validate 
+adherence to coding conventions as well as making sure that the system
+is buildable and all unit tests passes. Possibly, much of this could even
+have been automated (e.g. static code analysis and coding style validation
+tools are commonplace) to an even higher degree, but that is, as always, a 
+cost/benefit question. It is innovative and unique, but it does build upon
+the so called "benevolent dictator" workflow, especially the release
+management component of it. The success of this workflow from high-profile 
+projects like the Linux kernel has been an inspiration for the design.
+The reason why the project rejected the topic branch workflow at an early
+stage was the problems associated with topic branches in the early stages
+of a software project, where a lot of interdependencies exist and basic
+infrastructure is needed. In later stages of the project, this workflow
+would have been more feasible, but the overhead associated with switching
+workflow was deemed to high. It has been used in some rare cases, where code
+was at a very experimental stage.
 
 \section{Results from Post-mortem Analysis}
 

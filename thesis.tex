@@ -75,13 +75,13 @@ differences between versions of the same file (called diffs, or
 deltas). With each delta SCCS also stores metadata such as who made
 the change, why, and when. This did not only save precious storage
 space, but also provided the \emph{traceability} that the software
-developers had previously lacked.
+developers had previously lacked\cite{rochkind75}.
 
 It is worth noting that SCCS was not the only VCS that followed the
 philosophy of storing the files locally, \emph{Revision Control
 System} (RCS) which was essentially a wrapper around the Unix tool
 \emph{diff} was released in 1982 and gradually started taking over as
-the dominant VCS for Unix.
+the dominant VCS for Unix\cite{tichy85}.
 
 \subsection{The Client-Server Era}
 Although RCS was an improvement over SCCS it still had several flaws;
@@ -90,18 +90,18 @@ stored locally.
 
 To be able to cooperate with his students, working on differing
 schedules, Dick Grune created shell scripts to centrally manage the
-project they were working on through RCS. When the project was over he
-realized the potential and cleaned up the scripts and published them
-in late 1985. Two years later Brian Berliner rewrote the software in
-C, and CVS was born.
+project they were working on through RCS\cite{grune86}. When the
+project was over he realized the potential and cleaned up the scripts
+and published them in late 1985. Two years later Brian Berliner
+rewrote the software in C, and CVS was born.
 
 CVS introduced all the modern terminology we use today when we talk
-about version control; the code is stored in a \emph{repository} that
-users can \emph{check out} a \emph{working copy} from. Terms such as
-\emph{committing} code and \emph{merging} changes was also introduced
-by CVS. It also made \emph{branching} a bit less cumbersome than it
-had been in RCS although merging the branches still required a lot of
-work.
+about version control\cite{cederqvist93}; the code is stored in a
+\emph{repository} that users can \emph{check out} a \emph{working
+  copy} from. Terms such as \emph{committing} code and \emph{merging}
+changes was also introduced by CVS. It also made \emph{branching} a
+bit less cumbersome than it had been in RCS although merging the
+branches still required a lot of work.
 
 With CVS in the front line and with proprietary version control
 systems starting to pop up in the early nineties the model of a
@@ -109,11 +109,12 @@ central server that contained the repository that everyone worked in
 became the standard way to think about version control.
 
 Although CVS simplified and popularized the use of version control
-systems it has still received its fair share of criticism. For example
-the revision numbers are created on a per file basis, which means that
-the latest revision number is not the same across the board which can
-sometimes be confusing. Other things like not handling symbolic links
-for example is claimed by the CVS developers to be carefully planned
+systems it has still received its fair share of
+criticism\cite{robert06}\cite{subversion}: For example the revision
+numbers are created on a per file basis, which means that the latest
+revision number is not the same across the board which can sometimes
+be confusing. Other things like not handling symbolic links for
+example is claimed by the CVS developers to be carefully planned
 features (in the case of symbolic links due to security concerns)
 rather than bugs, but as the issues started to pile up Collabnet
 (founded by Tim O'Reilly that founded \emph{O'Reilly Media} and Brian
@@ -127,8 +128,9 @@ rather focused on the weaknesses of CVS like versioning of symbolic
 links, versioning for directories and file metadata and truly atomic
 commits (meaning if the transmission between client and server is
 interrupted, the commit is rolled back rather than processed half-way,
-much like transaction in a database --- in CVS this wasn't the case,
-and it could cause inconsistencies or corrupted data if it happened).
+much like transaction in a database\cite{subversion} --- in CVS this
+wasn't the case, and it could cause inconsistencies or corrupted data
+if it happened).
 
 Other systems such as IBM's ClearCase and Microsoft's Visual
 SourceSafe and Team Foundation Server existed, but never reached the
@@ -145,22 +147,23 @@ repository on a centralized server, distributed version control
 systems like GNU Arch and Monotone stored a copy of the repository on
 every client that checked out a working copy. That way developers
 could always have access to the full history even without an internet
-connection.
+connection. 
 
 One of the first distributed version control systems, BitKeeper,
 infamously withdrew the rights for the Linux kernel project to freely
-use BitKeeper (which was a proprietary system) which sparked Linus
-Torvalds to create a new, free tool: Git. 
+use BitKeeper\cite{robert06}\cite{shaikh02} (which was a proprietary
+system) which sparked Linus Torvalds to create a new, free tool: Git.
 
 The main goal with git was to create a version control system that
 supported a BitKeeper-like workflow with high performance and strong
 integrity control. Since Linus also has a passionate hatred for CVS he
 has also said ironically that if there is any doubt in any design
-choice to be made, the opposite of the one CVS took is the way to go.
+choice to be made, the opposite of the one CVS took is the way to
+go\cite{torvalds07}.
 
 Git has in the past few years seen a steady growth in users and
 projects, and while the numbers compared to Subversion is still quite
-small, the change speed is pointing straight up.
+small, the change speed is pointing straight up\cite{bird09}.
 
 \subsection{VCS Workflow}
 

@@ -5,12 +5,12 @@ set terminal png
 set output "vcs-used.png"
 
 set title ""
-set xlabel ""
-set ylabel ""
+set xlabel "Frequency"
+set ylabel "VCS"
 
 set style data histogram
 set style histogram cluster gap 1
-set yrange [0:6]
+set yrange [0:10]
 set ytics 1
 
 set grid

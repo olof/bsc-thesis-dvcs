@@ -5,8 +5,8 @@ set terminal png
 set output "vcs-prof.png"
 
 set title ""
-set xlabel "Frequency"
-set ylabel "Proficiency"
+set ylabel "Frequency"
+set xlabel "Proficiency"
 
 set style data histogram
 set style histogram cluster gap 1

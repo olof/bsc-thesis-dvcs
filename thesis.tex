@@ -82,10 +82,10 @@ several reasons described by the creator of SCCS, Marc J. Rochkind
 
 Instead of saving entire files in various states, SCCS stores the
 differences between versions of the same file (called diffs, or
-deltas). With each delta SCCS also stores metadata such as who made
-the change, why, and when. This did not only save precious storage
-space, but also provided the \emph{traceability} that the software
-developers had previously lacked\cite{rochkind75}.
+deltas\cite{ambriola90}). With each delta SCCS also stores metadata
+such as who made the change, why, and when. This did not only save
+precious storage space, but also provided the \emph{traceability} that
+the software developers had previously lacked\cite{rochkind75}.
 
 It is worth noting that SCCS was not the only VCS that followed the
 philosophy of storing the files locally, \emph{Revision Control
@@ -280,8 +280,11 @@ questionnaries.
 \section{Literature Review}
 
 %* in common
+\subsection{Adoption}
 
-\subsection{Migration Costs}
+In these next few sections we will try to answer research question 1.
+
+\subsubsection{Migration Costs}
 
 There a large number of open source as well as proprietary projects
 moving to one of the major distributed version control system; Perl,
@@ -335,7 +338,7 @@ centralized VCS. In short, there will have to be a lot of
 documentation of procedures, tools and workflows when migrating to a
 new VCS --- especially a DVCS \cite{alwis09}.
 
-\subsection{Architecture}
+\subsubsection{Architecture}
 
 As mentioned in the section on migration costs, the fundamental
 differences in the distributed version control architecture vis a vis 
@@ -372,21 +375,22 @@ This limits the phenomenon known as "commit whoring" or "commit
 politics", where people try to get commit access just for the sake of
 it (as a status symbol).
 
-\subsection{Performance}
+\subsubsection{Performance}
 
 The fact that anyone using a DVCS is working with a local repository
 has big impacts on performance. In a CVCS every operation requires
 access to the central server, and thus adds network latency to every
-operation. Additionally, every developer that works towards the same
-central server adds more to its workload, making it scale quite
-badly. In contrast, DVCSes do not work towards the same server, even
-though some repositories are perhaps considered 'more important' than
-others, and thus scales very well almost any amount of
-developers. Working locally leads to operations like branching and
-merging being much faster and smoother, encouraging developers to use
-them more\cite{alwis09}.
+operation\cite{torvalds07}. Additionally, every developer that works
+towards the same central server adds more to its workload, making it
+scale quite badly. In contrast, DVCSes do not work towards the same
+server, even though some repositories are perhaps considered 'more
+important' than others, and thus scales very well almost any amount of
+developers\cite{shaikh02}. Working locally leads to operations like
+branching and merging being much faster and smoother, encouraging
+developers to use them more\cite{alwis09}.
 
 \subsection{Quality Implications}
+In this section we will try to answer research question 1.
 
 The fact that most operations are so fast in DVCSes will have an
 impact on how people work with their SCM tools. The fact that
@@ -946,6 +950,32 @@ IEEE Transactions on Software Engineering.
 Another paper dealing with software quality; dealing more with
 classifications of bugs et cetera this could be useful when analyzing
 quality related data. This paper relates to research question 2.
+
+\subsubsection{The Evolution of Configuration Management and Version
+  Control}
+
+An article by V. Ambriola, L. Bendix and P. Ciancarini, written in
+1990 and published in Software Engineering Journal.
+
+\begin{abstract}
+  The activities of configuration management and version control are
+  common to a number of engineering tasks. These activities are
+  particularly important for software engineers, since during most of
+  a system lifecycle they have to deal with a growing number of
+  versions of a single component, and to rebuild the complete system
+  in different ways using different components. These tasks are
+  repetitive and trivial, and they require a lot of manual work and
+  accuracy. In this paper, we show how the problem of automating these
+  activities has been solved in a number of software development
+  environments.  We describe the evolution of systems for
+  configuration management and version control from simple stand-alone
+  tools, such as make and SCCS (based on an underlying file system),
+  towards more integrated systems based on a project database.
+\end{abstract}
+
+This paper gives a more abstract view of Configuration Management in
+general, as well as an overview of older VCSs. This relates to
+research question 1.
 
 \end{document}
 

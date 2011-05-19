@@ -1,6 +1,11 @@
 \documentclass{llncs}
 
 \usepackage{graphicx}
+\usepackage{ctable}
+\usepackage{tabularx}
+\usepackage{subfig}
+
+\title{Workflows and Distributed Version Control}
 
 \title{Workflows and Distributed Version Control}
 \author{Olof Johansson \and Daniel Persson}
@@ -11,7 +16,7 @@
 \maketitle
 
 \begin{abstract}
- This is a bachelor thesis in software engineering on Blekinge
+ This is a bachelor thesis in software engineering at Blekinge
  Institute of Technology, investigating version control systems
  in relation to software development in general and VCS related
  workflows in particular. Specifically, we investigate
@@ -154,10 +159,12 @@ The next innovation came from the open source community, where the
 centralized approach of CVS and Subversion didn't come as natural as
 it perhaps does in the corporate domain. Instead of storing the
 repository on a centralized server, distributed version control
-systems like GNU Arch and Monotone stored a copy of the repository on
-every client that checked out a working copy. That way developers
-could always have access to the full history even without an internet
-connection. 
+systems like GNU Arch, Monotone and Mercurial (hg\footnote{
+ The "abbreviation" comes from the symbol for mercury in the periodic
+ table.
+}) stored a copy of the repository on every client that checked out a
+working copy. That way developers could always have access to the full
+history even without an internet connection. 
 
 One of the first distributed version control systems, BitKeeper,
 infamously withdrew the rights for the Linux kernel project to freely
@@ -206,12 +213,12 @@ also provide a list of keywords that search-strings can be composed
 of: 
 
 \begin{itemize}
-  \item VCS, Version Control
-  \item DVCS, Distributed Version Control
-  \item SCM, Source Control Management
-  \item Git, Subversion, Mercurial, Perforce, Darcs, CVS, BitKeeper
-  \item Checkin, Checkout, Commit, Diff, Branch, Merge, Rebase
-  \item Configuration Management
+ \item VCS, Version Control
+ \item DVCS, Distributed Version Control
+ \item SCM, Source Control Management
+ \item Git, Subversion, Mercurial, Perforce, Darcs, CVS, BitKeeper
+ \item Checkin, Checkout, Commit, Diff, Branch, Merge, Rebase
+ \item Configuration Management
 \end{itemize}
 
 We will focus our searches at Google Scholar and Elin, but if needed
@@ -489,7 +496,7 @@ exclusive). Some of the most popular ones are presented here:
   kernel (and also, the initial author of git!).
 \end{itemize}
 
-\begin{figure}
+\begin{figure}[tp]
  \begin{center}
   \includegraphics[scale=0.5]{workflow.png}
   \caption{Workflow description}
@@ -539,7 +546,7 @@ was at a very experimental stage.
 
 \section{Results from Post-mortem Analysis}
 
-From the conducted interviews it is noticable that survey participants
+From the conducted interviews it is noticeable that survey participants
 rated their proficiency with DVCSes the same as with VCSes in general.
 
 Regarding the workflow employed by the Telia Smart Home (TSH)
@@ -555,7 +562,97 @@ workflow looked more complex than it really was. Other participants
 noted that the code review came natural and worked well, and that the
 mainline build was rarely broken.
 
-\section{Discussion}
+\begin{table}[tp]
+ \begin{center}
+  \begin{tabular}{ccc}
+   \toprule
+   Date & Build attempts & Duration (min) \\
+   \midrule
+   2011-03-10 & 2 & 5 \\
+   2011-03-10 & 3 & 21 \\
+   2011-03-11 & 1 & 49 \\
+   2011-03-11 & 1 & 4 \\
+   2011-03-14 & 1 & 25 \\
+   2011-03-30 & 11 & 115 \\
+   \bottomrule
+   \\[-0.7em]
+  \end{tabular}
+  \caption{Statistics for build failures}
+  \label{tbl:breakage}
+ \end{center}
+\end{table}
+
+\begin{figure}[tp]
+ \begin{center}
+  \includegraphics[width=0.8\textwidth]{binary-blobs/pie}
+  \caption{The percentage of successful builds (red) and failed
+           builds (blue) within the Telia Smart Home project, over a
+           period of 153 builds.}
+  \label{fig:successbuilds}
+ \end{center}
+\end{figure}
+
+Comparing to the data collected from the continuous integration
+environment (Jenkins) we can easily see some indications of the
+project quality state:
+
+\begin{itemize}
+ \item The number of successful builds represents 86.85\% of all
+       builds. See Figure \ref{fig:successbuilds}. 
+ \item The average time it took to fix a build failure\footnote{
+        A build failure is defined as either a compilation error, 
+        one or more failing unit tests or problems in the build 
+        environment.
+       } was 30 minutes, with a mean time of 21 minutes. See Table
+       \ref{tbl:breakage}.
+ \item There were no build errors after 2011-03-30. See Table
+       \ref{tbl:breakage}.
+\end{itemize}
+
+It is hard to know what kind of impact the release management approach
+used by the project had without control data, but the situation was
+satisfactory for the project. The fact that build was only broken in
+the beginning of the project could be an indication that the release
+management was effective once the team and release managers got used
+to the workflow.
+
+When looking at the survey results from the participants in other
+projects, the general impression is that little though has been put
+into the design of their VCS workflows. Only a minority of the
+respondents "understood" what \emph{workflow} meant, in the VCS
+context. Those that did, described a simple centralized workflow ---
+with or without DVCS tools. 
+
+\begin{figure}
+ \begin{center}
+  \subfloat[Previous experience with VCS tools]{
+  \label{fig:vcsused}
+  \includegraphics[width=0.8\textwidth]{binary-blobs/vcs-used}
+ }
+ \\
+ \subfloat[Proficiency with VCS and DVCS]{
+  \label{fig:vcsprof}
+   \includegraphics[width=0.8\textwidth]{binary-blobs/vcs-prof}
+ }
+ \caption{Results from survey with external project participants}
+ \end{center}
+\end{figure}
+
+Another observation was that almost half of the respondents had never
+used a version control system until the current project. Those that
+did have prior experience had used primarily Git or Subversion, with
+some minor use of Mercurial also accounted for. The respondents
+stated that they had prior experience with Mercurial did not report
+that they had used Git. See Figure \ref{fig:vcsused}. Most of the
+respondents described their current proficiency level with VCS in
+general as a "three" on a scale from one to five. The DVCS proficiency
+was centered around three and four on the same scale. See Figure
+\ref{fig:vcsprof}.
+
+\subsection{Analysis of Post-Mortem Findings}
+The survey responses within the Telia Smart Home project made it clear
+to use that the workflow was feasible and that the developers
+unanimously was happy with it, albeit with some minor criticism.
 
 The re-pushing of branches could very well have been excluded from the
 workflow, the reasons for having it was to ease the work for release
@@ -571,16 +668,24 @@ the cost would have been too big. Sharing the responsibility of
 release management between several people could also remove the
 downtime of the review process when the release manager is
 absent. Overall the release management and code review has worked
-well, with few hick-ups, and as figure \ref{fig:breakage} shows, the
+well, with few hick-ups, and as Table \ref{tbl:breakage} shows, the
 mainline build was broken relatively few times, and only for short
 periods of time.
 
-\begin{figure}
- \begin{center}
-  \caption{FIXME}
-  \label{fig:breakage}
- \end{center}
-\end{figure}
+\section{Discussion}
+
+The literature review focused on migration cost, whereas the
+post-mortem analysis investigated the adoption of DVCS in a new
+project. The migration in the latter case was an individual adoption
+rather than the "collective" project migration usually described in
+the literature. Still, some of the conclusions clash with the findings
+in the literature review. The papers dealing with migrations
+emphasize the problems with individual developers having to adopt to
+new interfaces and changed behavior. During the course of the project,
+this has been in large a non-issue. We suspect that we would find
+other results if we would enlarge the scope of the research and
+include a more diverse target group with more experience of software
+engineering and version control.
 
 \section{Conclusion}
 
@@ -591,7 +696,7 @@ periods of time.
 \section*{Appendices}
 \appendix
 \section{Data from Literature Review}
-\subsubsection{Version Management Tools: CVS to BK in the Linux Kernel}
+\subsection{Version Management Tools: CVS to BK in the Linux Kernel}
 
 An article by M. Shaikh and T. Cornford, written in 2002 and published 
 in 3rd Workshop on Open Source Software Engineering.
@@ -619,7 +724,7 @@ system into a such a large project as the Linux kernel, may give us
 insight into the adaption process. This paper relates to research
 question 1.
 
-\subsubsection{Making Sense of Revision-Control Systems}
+\subsection{Making Sense of Revision-Control Systems}
 
 An article by B. O'Sullivan, written in 2009 and published in
 Communications of the ACM.
@@ -633,7 +738,7 @@ A high-level description of revision control tools and concepts and its use
 will give us a reference on what properties is interesting in version
 control workflows.
 
-\subsubsection{Darcs: Distributed Version Management in Haskell}
+\subsection{Darcs: Distributed Version Management in Haskell}
 
 An article by D. Roundy, written in 2005 and published in Proceedings of the
 2005 ACM SIGPLAN workshop on Haskell.
@@ -661,7 +766,7 @@ though the paper deals in large parts with the implementation details,
 the actual usage and interaction with the system is described. This
 paper relates to research question 1.
 
-\subsubsection{Towards a Better SCM: Revlog and Mercurial}
+\subsection{Towards a Better SCM: Revlog and Mercurial}
 
 An article by M. Mackall, written in 2006 and published in the Linux
 Symposium.
@@ -688,7 +793,7 @@ system.  Again, this also deals with technical details, but the
 interaction and usage pattern is interesting for our research. This
 paper relates to research question 1.
 
-\subsubsection{The Promises and Perils of Mining Git}
+\subsection{The Promises and Perils of Mining Git}
 
 An article by C Bird, P. C. Rigby, E. T. Barr, D. J. Hamilton, D. M. German
 and P Devanbu, written in 2009 and published in 2009 6th IEEE International 
@@ -719,7 +824,7 @@ system.  This paper does not primarily deal with technical details
 however, and instead focusing on interaction details. This paper
 relates to research question 1.
 
-\subsubsection{Why Are Software Projects Moving From Centralized to
+\subsection{Why Are Software Projects Moving From Centralized to
                Decentralized Version Control Systems?}
 
 An article by D. de Alwis and J. Sillito, written in 2009 and published in 
@@ -740,7 +845,7 @@ This paper is relevant to us and important for us to understand the reasons
 for migration, and as a reference for comparisons with centralized version 
 control systems. This paper relates to research question 1.
 
-\subsubsection{DVCS or a new way to use Version Control Systems for FreeBSD}
+\subsection{DVCS or a new way to use Version Control Systems for FreeBSD}
 
 An article by O. Robert, written in 2006.
 
@@ -773,7 +878,7 @@ control system (CVS), to a decentralized. What would be the benefits
 for the FreeBSD project? What would be the drawbacks? This paper
 relates to research question 1.
 
-\subsubsection{BitKeeper for Kernel Developers}
+\subsection{BitKeeper for Kernel Developers}
 
 An article by V. Henson and J. Garzik, written in 2002 and published in
 Ottawa Linux Symposium.
@@ -797,7 +902,7 @@ non-free, proprietary status and hostility against reverse
 engineering, it was still a major breakthrough for distributed version
 control. This paper relates to research question 1.
 
-\subsubsection{Software Configuration Management: A Roadmap}
+\subsection{Software Configuration Management: A Roadmap}
 
 An article by J. Estublier, written in 2000 and published in Proceedings of
 the conference on The future of Software engineering.
@@ -817,7 +922,7 @@ field. It is useful as a basis and context for our research into a
 specific configuration management concept and technology, namely
 version control. This paper relates to research question 1.
 
-\subsubsection{Learning by Doing: Introducing Version Control as a Way to
+\subsection{Learning by Doing: Introducing Version Control as a Way to
                Manage Student Assignments}
 
 An article by K. L. Reid and G. V. Wilson, written in 2005 and published in
@@ -843,7 +948,7 @@ experiences within version control education. How did the students
 adapt to this somewhat unorthodox assignment submission system? This
 paper relates to research question 1.
 
-\subsubsection{RCS --- A System for Version Control}
+\subsection{RCS --- A System for Version Control}
 
 An article by W.F. Tichy written in 1985 and published in Software:
 Practice and Experience.
@@ -870,7 +975,7 @@ This paper thoroughly describes RCS, and how it is designed. It is
 important to understand basic concepts of this to answer both research
 questions.
 
-\subsubsection{Concurrent Versions System, A Method for Independent
+\subsection{Concurrent Versions System, A Method for Independent
   Cooperation}
 
 An article D. Grune written in 1986 and published in Report IR-114,
@@ -905,7 +1010,7 @@ by its creator. With CVS being a major influence on most modern VCSs,
 this is also imperative for the understanding of basic version control
 concepts. This paper relates to research question 1.
 
-\subsubsection{Software quality: the elusive target}
+\subsection{Software quality: the elusive target}
 
 An article by B. Kitchenham, and S.L. Pfleeger, written in 1996 and
 published in IEEE Software.
@@ -924,7 +1029,7 @@ way of measuring software quality, this paper hopefully gives a good
 foundation for us to find a suitable metric. This paper relates to
 research question 2.
 
-\subsubsection{A practical view of software measurement and
+\subsection{A practical view of software measurement and
   implementation experiences within Motorola}
 
 An article by M.K. Daskalantonakis, written in 1992 and published in
@@ -951,7 +1056,7 @@ Another paper dealing with software quality; dealing more with
 classifications of bugs et cetera this could be useful when analyzing
 quality related data. This paper relates to research question 2.
 
-\subsubsection{The Evolution of Configuration Management and Version
+\subsection{The Evolution of Configuration Management and Version
   Control}
 
 An article by V. Ambriola, L. Bendix and P. Ciancarini, written in

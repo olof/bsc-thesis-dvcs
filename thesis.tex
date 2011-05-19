@@ -1,3 +1,13 @@
+% Bachelor Thesis, 2011
+% Software Engineering at Blekinge Institute of Technology
+% Workflows and Distributed Version Control
+%
+% Authors:    Olof Johansson, Daniel Persson
+% Supervisor: Nina D. Fogelström
+% 
+% Copyright 2011, Olof Johansson and Daniel Persson
+% All rights reserved
+
 \documentclass{llncs}
 
 \usepackage{graphicx}
@@ -50,16 +60,23 @@ software project. The paper will try to answer the following questions:
 \end{enumerate}
 
 In Section \ref{sec:background} we introduce the concepts of VCS and
-give a brief history of its evolution. In Section \ref{sec:telia} we
-introduce the student run Telia Smart Home project with focus of its
-use of version control systems. The primary means of doing the
-post-mortem analysis will be to conduct interviews with participants
-in their various roles. In addition to this we will also collect data
-from various project management and configuration management tools and
-systems.
+give a brief history of its evolution. We continue with the findings
+from the literature review in Section \ref{sec:litrev}. In Section
+\ref{sec:telia} we introduce the student run Telia Smart Home project
+with focus on its use of version control systems. The primary means of
+doing the post-mortem analysis will be to conduct interviews with
+participants in their various roles. In addition to this we will also
+collect data from various project management and configuration
+management tools and systems.
 
 \section{Background}
 \label{sec:background}
+
+Version control is one of the most valuable tools used in
+configuration management, especially important for software
+engineering projects with more than one developer. Here, we will
+provide a brief overview on the history of the concept and its uses
+--- why it is used and how it is used.
 
 The history of Version Control Systems can be divided into three
 categories; the ones that only manages local files, the ones that rely
@@ -290,6 +307,7 @@ will then be correlated with the data gained from the interviews and
 questionnaries.
 
 \section{Literature Review}
+\label{sec:litrev}
 
 %* in common
 \subsection{Adoption}
@@ -656,7 +674,7 @@ was centered around three and four on the same scale. See Figure
 
 \subsection{Analysis of Post-Mortem Findings}
 The survey responses within the Telia Smart Home project made it clear
-to use that the workflow was feasible and that the developers
+to us that the workflow was feasible and that the developers
 unanimously was happy with it, albeit with some minor criticism.
 
 The re-pushing of branches could very well have been excluded from the
@@ -692,7 +710,30 @@ other results if we would enlarge the scope of the research and
 include a more diverse target group with more experience of software
 engineering and version control.
 
+Our workflow was enabled by, and requires, DVCS. It would not have
+been possible to do this with, e.g., Subversion or CVS. Our use of
+branching and merging was a core part of the workflow. This confirms
+what we found in the literature review, branching and merging is more
+often a problem and a burden in centralized VCS than it is in DVCS.
+
 \section{Conclusion}
+
+Our findings suggest that a project using Subversion or another
+centralized VCS could benefit from migrating to a DVCS --- the
+migration may not come cheap, but the benefits was enough to convince
+e.g. Perl, Parrot and Curl to change to Git. The benefits in terms of
+more flexible workflow opportunities, intuitive integration of release
+management and the low cost of merging and branching all work in favor
+of the DVCSes. Its up to every project to determine whether or not the
+benefits outweighs the migration costs.
+
+One type of cases that should be especially motivated to evaluate the
+use of DVCS are new projects, without any prior processes, routines
+and infrastructure. The drawbacks are few and mostly minor, the most
+severe drawback is personal preferences. Some are used to working with
+a specific tool or centralized VCS in general and may be more
+productive in a familiar setting. This should be taken into
+consideration when evaluating the choice of a VCS.
 
 \bibliographystyle{plain} 
 \bibliography{references}

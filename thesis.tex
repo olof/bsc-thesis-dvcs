@@ -67,12 +67,12 @@ distributed ones are rising fast in popularity, so perhaps we are
 currently in the start of a new transition.
 
 \subsection{The Local Era}
-The first VCS ever released was the \emph{Source Code Control System}
-(SCCS) in 1972. SCCS tried to solve a number of problems that software
-developers of that time had. Manually managing several versions of the
-same product simultaneously was not feasible in the long run for
-several reasons described by the creator of SCCS, Marc J. Rochkind
-\cite{rochkind75}:
+The first VCS ever released was the \emph{Source Code Control
+  System}\footnote{http://sccs.berlios.de} (SCCS) in 1972. SCCS tried
+to solve a number of problems that software developers of that time
+had. Manually managing several versions of the same product
+simultaneously was not feasible in the long run for several reasons
+described by the creator of SCCS, Marc J. Rochkind \cite{rochkind75}:
 
 \begin{itemize}
  \item The amount of space to store the source code may be several
@@ -94,9 +94,10 @@ the software developers had previously lacked\cite{rochkind75}.
 
 It is worth noting that SCCS was not the only VCS that followed the
 philosophy of storing the files locally, \emph{Revision Control
-System} (RCS) which was essentially a wrapper around the Unix tool
-\emph{diff} was released in 1982 and gradually started taking over as
-the dominant VCS for Unix\cite{tichy85}.
+  System}\footnote{http://www.gnu.org/software/rcs} (RCS) which was
+essentially a wrapper around the Unix tool \emph{diff} was released in
+1982 and gradually started taking over as the dominant VCS for
+Unix\cite{tichy85}.
 
 \subsection{The Client-Server Era}
 Although RCS was an improvement over SCCS it still had several flaws;
@@ -108,7 +109,8 @@ schedules, Dick Grune created shell scripts to centrally manage the
 project they were working on through RCS\cite{grune86}. When the
 project was over he realized the potential and cleaned up the scripts
 and published them in late 1985. Two years later Brian Berliner
-rewrote the software in C, and CVS was born.
+rewrote the software in C, and Concurrent Versions System\footnote{
+  http://savannah.nongnu.org/projects/cvs} (CVS) was born.
 
 CVS introduced all the modern terminology we use today when we talk
 about version control\cite{cederqvist93}; the code is stored in a
@@ -133,8 +135,8 @@ example is claimed by the CVS developers to be carefully planned
 features (in the case of symbolic links due to security concerns)
 rather than bugs, but as the issues started to pile up Collabnet
 (founded by Tim O'Reilly that founded \emph{O'Reilly Media} and Brian
-Behlendorf, co-founder of the Apache project) started the Subversion
-project.
+Behlendorf, co-founder of the Apache project) started the
+Subversion\footnote{http://subversion.apache.org} project.
 
 Subversion was released in 2000, and solved many of the issues that
 CVS had, while still maintaining the same working style of
@@ -147,11 +149,13 @@ much like transaction in a database\cite{subversion} --- in CVS this
 wasn't the case, and it could cause inconsistencies or corrupted data
 if it happened).
 
-Other systems such as IBM's ClearCase and Microsoft's Visual
-SourceSafe and Team Foundation Server existed, but never reached the
-same popularity as CVS (that even to date manages a significant amount
-of projects) and Subversion (that is currently the most popular tool
-for version control) due to its proprietary licensing.
+Other systems such as IBM's
+ClearCase\footnote{http://www-01.ibm.com/software/awdtools/clearcase}
+and Microsoft's Visual SourceSafe and Team Foundation
+Server\footnote{http://www.microsoft.com} existed, but being
+proprietary tools they never grew popular in the open source
+community, and their popularity in big corporations is hard to
+measure.
 
 \subsection{The Distributed Era}
 
@@ -159,12 +163,11 @@ The next innovation came from the open source community, where the
 centralized approach of CVS and Subversion didn't come as natural as
 it perhaps does in the corporate domain. Instead of storing the
 repository on a centralized server, distributed version control
-systems like GNU Arch, Monotone and Mercurial (hg\footnote{
- The "abbreviation" comes from the symbol for mercury in the periodic
- table.
-}) stored a copy of the repository on every client that checked out a
-working copy. That way developers could always have access to the full
-history even without an internet connection. 
+systems like GNU Arch, Monotone and Mercurial (hg\footnote{ The
+  "abbreviation" comes from the symbol for mercury in the periodic
+  table. }) stored a copy of the repository on every client that
+checked out a working copy. That way developers could always have
+access to the full history even without an internet connection.
 
 One of the first distributed version control systems, BitKeeper,
 infamously withdrew the rights for the Linux kernel project to freely

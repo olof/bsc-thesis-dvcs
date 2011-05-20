@@ -107,38 +107,40 @@ described by the creator of SCCS, Marc J. Rochkind \cite{rochkind75}:
 
 Instead of saving entire files in various states, SCCS stores the
 differences between versions of the same file (called diffs, or
-deltas\cite{ambriola90}). With each delta SCCS also stores metadata
+deltas \cite{ambriola90}). With each delta SCCS also stores metadata
 such as who made the change, why, and when. This did not only save
 precious storage space, but also provided the \emph{traceability} that
-the software developers had previously lacked\cite{rochkind75}.
+the software developers had previously lacked \cite{rochkind75}.
 
 It is worth noting that SCCS was not the only VCS that followed the
 philosophy of storing the files locally, \emph{Revision Control
   System}\footnote{ http://www.gnu.org/software/rcs } (RCS) which was
 essentially a wrapper around the Unix tool \emph{diff} was released in
-1982 and gradually started taking over as the dominant VCS for
-Unix\cite{tichy85}.
+1982 and gradually started taking over as the dominant VCS for Unix
+\cite{tichy85}. RCS stored the latest version of a file and the deltas
+backwards towards the original state of the file, as opposed to SCCS
+that did the opposite, leading to faster access to the later
+revisions\cite{robert06}, which makes more sense from a user
+perspective.
 
 \subsection{The Client-Server Era}
 Although RCS was an improvement over SCCS it still had several flaws;
 it was still operating on single files only, and they were still
-stored locally. 
+stored locally, which meant that collaboration between multiple
+developers on the same project was cumbersome.
 
 To be able to cooperate with his students, working on differing
 schedules, Dick Grune created shell scripts to centrally manage the
-project they were working on through RCS\cite{grune86}. When the
+project they were working on through RCS \cite{grune86}. When the
 project was over he realized the potential and cleaned up the scripts
 and published them in late 1985. Two years later Brian Berliner
 rewrote the software in C, and Concurrent Versions System\footnote{
-  http://savannah.nongnu.org/projects/cvs} (CVS) was born.
+http://savannah.nongnu.org/projects/cvs} (CVS) was born.
 
-CVS introduced all the modern terminology we use today when we talk
-about version control\cite{cederqvist93}; the code is stored in a
-\emph{repository} that users can \emph{check out} a \emph{working
-  copy} from. Terms such as \emph{committing} code and \emph{merging}
-changes was also introduced by CVS. It also made \emph{branching} a
-bit less cumbersome than it had been in RCS although merging the
-branches still required a lot of work.
+Much of the terminology we use today when we talk about version
+control was introduced with CVS. It also made branching a bit less
+cumbersome than it had been in RCS although merging the branches still
+required a lot of work.
 
 With CVS in the front line and with proprietary version control
 systems starting to pop up in the early nineties the model of a
@@ -147,7 +149,7 @@ became the standard way to think about version control.
 
 Although CVS simplified and popularized the use of version control
 systems it has still received its fair share of
-criticism\cite{robert06}\cite{subversion}: For example the revision
+criticism \cite{robert06}\cite{subversion}: For example the revision
 numbers are created on a per file basis, which means that the latest
 revision number is not the same across the board which can sometimes
 be confusing. Other things like not handling symbolic links for
@@ -165,16 +167,20 @@ rather focused on the weaknesses of CVS like versioning of symbolic
 links, versioning for directories and file metadata and truly atomic
 commits (meaning if the transmission between client and server is
 interrupted, the commit is rolled back rather than processed half-way,
-much like transaction in a database\cite{subversion} --- in CVS this
+much like transaction in a database \cite{subversion} --- in CVS this
 wasn't the case, and it could cause inconsistencies or corrupted data
 if it happened).
 
-Other systems such as IBM's ClearCase\footnote{
+Other systems such as Perforce\footnote{ http://www.perforce.com },
+IBM's ClearCase\footnote{
   http://www-01.ibm.com/software/awdtools/clearcase } and Microsoft's
-Visual SourceSafe and Team Foundation Server\footnote{
-  http://www.microsoft.com } existed, but being proprietary tools they
-never grew popular in the open source community, and their popularity
-in big corporations is hard to measure.
+Visual SourceSafe\footnote{
+  http://msdn.microsoft.com/en-us/library/ms181038\%28VS.80\%29.aspx }
+and Team Foundation Server\footnote{
+  http://msdn.microsoft.com/en-us/vstudio/ff637362 } existed, but
+being proprietary tools they never grew popular in the open source
+community, and their popularity within big corporations is hard to
+measure.
 
 \subsection{The Distributed Era}
 
@@ -191,21 +197,22 @@ copy of the repository on every client that checked out a working
 copy. That way developers could always have access to the full history
 even without an internet connection.
 
-One of the first distributed version control systems, BitKeeper,
-infamously withdrew the rights for the Linux kernel project to freely
-use BitKeeper\cite{robert06}\cite{shaikh02} (which was a proprietary
-system) which sparked Linus Torvalds to create a new, free tool: Git.
+One of the first distributed version control systems, the proprietary
+BitKeeper, infamously withdrew the rights for the Linux kernel project
+to freely use BitKeeper \cite{robert06}\cite{shaikh02} (which was a
+proprietary system) which sparked Linus Torvalds to create a new, free
+tool: Git.
 
 The main goal with git was to create a version control system that
 supported a BitKeeper-like workflow with high performance and strong
 integrity control. Since Linus also has a passionate hatred for CVS he
 has also said ironically that if there is any doubt in any design
 choice to be made, the opposite of the one CVS took is the way to
-go\cite{torvalds07}.
+go \cite{torvalds07}.
 
 Git has in the past few years seen a steady growth in users and
 projects, and while the numbers compared to Subversion is still quite
-small, the change speed is pointing straight up\cite{bird09}.
+small, the change speed is pointing straight up \cite{bird09}.
 
 \section{Research Methodology}
 
@@ -217,14 +224,14 @@ project. The primary means of doing the post-mortem analysis will be
 to conduct interviews with participants of the student projects in their
 various roles. In addition to this we will also collect data from
 various project management and configuration management tools and
-systems (eg. Jenkins, Git or Redmine).
+systems (e.g. Jenkins, Git or Redmine).
 
 \subsection{Literature Review Design}
 
 To provide a foundation for our thesis we will look at papers relating
 to centralized and decentralized version control, to give a clear view
 of what the differences between the two are, from a user perspective
---- i.e. in terms of migration costs, conceptual difference et cetera.
+--- i.e. in terms of migration costs, conceptual differences et cetera.
 Especially interesting is what kind of workflows that the DVCS tools
 enable, and compare it to the workflow used by the Telia Smart Home
 project.
@@ -232,7 +239,7 @@ project.
 After a preliminary survey of the available material on the topic we
 have noticed that scientific material regarding this is quite scarce,
 and we therefore choose not to provide any exact search strings, but
-instead decide to limit ourself to the domains of configuration
+instead decide to limit ourselves to the domains of configuration
 management in general, and version control systems in particular, and
 also provide a list of keywords that search-strings can be composed
 of: 
@@ -244,13 +251,15 @@ of:
  \item Git, Subversion, Mercurial, Perforce, Darcs, CVS, BitKeeper
  \item Checkin, Checkout, Commit, Diff, Branch, Merge, Rebase
  \item Configuration Management
+ \item Performance
 \end{itemize}
 
 We will focus our searches at Google Scholar and Elin, but if needed
 we will also resort to using for example IEEE Xplore or other relevant
-tools. In worst case, we will also use of white papers or other
-sources not published in academic papers (e.g. performance tests
-conducted by hackers and other non-academics).
+tools. If we are unable to find published academic papers on certain
+topics, we will also make use of white papers or other sources not
+published in academic journals (e.g. performance tests conducted by
+hackers and other non-academics).
 
 The initial screening will be done by reading abstracts and
 conclusions to quickly dismiss irrelevant papers, and the go through
@@ -259,9 +268,9 @@ the most promising candidates more thoroughly to decide what to use.
 \subsection{Post-mortem Analysis Design}
 
 The post-mortem analysis will primarily be based on interviews with
-participants in the Telia Smart Home project and questionnaries with
+participants in the Telia Smart Home project and questionnaires with
 members from other projects within the same course framework. We will
-base the interviews and questionnaries around these questions:
+base the interviews and questionnaires around these questions:
 
 For the participants in the Telia Smart Home project we asked the
 following questions:
@@ -283,8 +292,8 @@ following questions:
 \end{enumerate}
 
 For the participants in the other projects (within the same course
-framework) we sent out a subset of the survey as they did not employ
-the same workflow as the Telia Smart Home project:
+framework) we will send out a subset of the survey as they do not
+employ the same workflow as the Telia Smart Home project:
 
 \begin{enumerate}
  \item How would you rate your proficiency in using Distributed
@@ -302,12 +311,10 @@ the same workflow as the Telia Smart Home project:
 The post-mortem analysis will also include an analysis of various data
 collected during the project. Most of this data will come from
 different configuration and project management tools, such as Git for
-Version Control, Jenkins for continuous integration or Redmine for
-time management and issue tracking.
-
-The data collected from the project and configuration management tools
-will then be correlated with the data gained from the interviews and
-questionnaries.
+version control, Jenkins for continuous integration or Redmine for
+project management and issue tracking. The data collected from the
+project and configuration management tools will then be correlated
+with the data gained from the interviews and questionnaires.
 
 \section{Literature Review}
 \label{sec:litrev}
@@ -330,7 +337,7 @@ do it. We will try to see why this might have been in the next few
 subsections.
 
 A migration of VCS is twofold. There is migration of the repository,
-with moving every commit with its meta data and authorship
+with moving every commit with its metadata and authorship
 information, every branch and every tag to the new VCS, making sure
 that nothing is lost and that nothing is broken. A problem in its own
 right, but with a lot of tools available producing generally good
@@ -338,7 +345,7 @@ results. The other side, however, is migrating the developers and the
 workflows. Changes in interface design requires every developer to
 "relearn" the various actions and tools used. Something as trivial as
 commit IDs are different and has become a problem for some
-\cite{alwis09} --- the centralized VCSes commonly use incremental
+ \cite{alwis09} --- the centralized VCSes commonly use incremental
 integers to identify a commit; DVCSes usually use a checksum of the
 content instead. The incrementing integers says more to a human when
 comparing two commits, which of the two commits are the newest, and
@@ -354,16 +361,22 @@ first a new DVCS user encounters.
 
 Another change from centralized VCS is the decoupling of committing
 and merging. This makes it a two command operation to do the
-equivalent of "svn commit". Looking past the short term
-impracticalities of having to do two commands to merge with a central
-server, it gives the developer freedom to not merge at all, or not
-merge "right now". Perhaps it is not even possible to merge --- as is
-the case in airplanes or being in remote areas and no network
-connectivity is available.
+equivalent of:
 
-An other change, not a change in the interface but a change of VCS
+\begin{verbatim}
+  svn commit
+\end{verbatim}
+
+Looking past the short term impracticalities of having to do two
+commands to merge with a central server, it gives the developer
+freedom to not merge at all, or not merge "right now". Perhaps it is
+not even possible to merge --- as is the case in airplanes or being in
+remote areas where no network connectivity is available or if the
+developer does not have write access to the upstream repository.
+
+Another change, not a change in the interface but a change of VCS
 nomenclature, is perhaps an even bigger obstacle for migration
-\cite{bird09}. Some words are introduced, some words are removed and
+ \cite{bird09}. Some words are introduced, some words are removed and
 some words are redefined. Committing is, as described, no longer
 publishing your changes in the central repository. Pulling and pushing
 are common words within DVCS for things that don't even exist in a
@@ -376,8 +389,8 @@ new VCS --- especially a DVCS \cite{alwis09}.
 As mentioned in the section on migration costs, the fundamental
 differences in the distributed version control architecture vis a vis 
 the centralized ditto makes it hard to transfer workflows and
-techniques directly. The differences do make it possible to other
-things and brings number of benefits together with its disadvantages.
+techniques directly. The differences do make it possible to do other
+things and brings a number of benefits together with its disadvantages.
 
 The distributed nature means that you have certain limitations on what
 can be done to enforce synchronization: e.g. there is no file locking
@@ -393,8 +406,8 @@ a critical issue, as the complete repository with content and history
 is replicated numerous times \cite{alwis09}. Another benefit from the
 distributed architecture of DVCS is the ability to work independently,
 isolated from the central repository. With this, a developer could
-work when travelling to or from remote offices or conferences
-\cite{alwis09}\cite{robert06}.
+work when traveling to or from remote offices or conferences
+ \cite{alwis09}\cite{robert06}.
 
 The research done in the field has largely depended on the activities
 of various open source projects, with its wealth of openly accessible
@@ -411,37 +424,37 @@ it (as a status symbol).
 \subsubsection{Performance}
 
 The fact that anyone using a DVCS is working with a local repository
-has big impacts on performance. In a CVCS every operation requires
-access to the central server, and thus adds network latency to every
-operation\cite{torvalds07}. Additionally, every developer that works
-towards the same central server adds more to its workload, making it
-scale quite badly\cite{mackall06}. In contrast, DVCSes do not work
-towards the same server, even though some repositories are perhaps
-considered 'more important' than others, and thus scales very well
-almost any amount of developers\cite{shaikh02}. Working locally leads
-to operations like branching and merging being much faster and
-smoother, encouraging developers to use them more\cite{alwis09}.
+has big impacts on performance. In a centralized VCS every operation
+requires access to the central server, and thus adds network latency
+to every operation \cite{torvalds07}. Additionally, every developer
+that works towards the same central server adds more to its workload,
+making it scale quite badly \cite{mackall06}. In contrast, DVCSes do
+not work towards the same server, even though some repositories are
+perhaps considered 'more important' than others, and thus scales very
+well almost any amount of developers \cite{shaikh02}. Working locally
+leads to operations like branching and merging being much faster and
+smoother, encouraging developers to use them more \cite{alwis09}.
 
 \subsection{Quality Implications}
-In this section we will try to answer research question 1.
+In this section we will try to answer research question 2.
 
 The fact that most operations are so fast in DVCSes will have an
 impact on how people work with their SCM tools. The fact that
 branching is such a cheap operation will encourage developers to
-actually use branches where they see fit\cite{alwis09}, without taking
+actually use branches where they see fit \cite{alwis09}, without taking
 things like workload on a central server, namespace pollution, or wait
 times into consideration. Coupled with the fact that merging branches
-is relatively painless\cite{alwis09}\cite{osullivan09} --- and thus
+is relatively painless \cite{alwis09}\cite{osullivan09} --- and thus
 resulting in merging being done when it should, instead of being
 postponed to delay the suffering for the developer, creating
-unnecessary conflicts and more suffering\cite{osullivan09} --- will in
+unnecessary conflicts and more suffering \cite{osullivan09} --- will in
 turn lead to a more thorough and in a sense more correct use of the
 VCS, resulting in a better history and potentially better code.
 
 Another powerful tool that can be used more frequently due to the huge
 performance-benefits that DVCSes provide is \verb!bisect!. It is very
 easy to use, but can prove to be very useful in finding bugs, or
-rather finding out when they are introduced\cite{osullivan09}. What
+rather finding out when they are introduced \cite{osullivan09}. What
 \verb!bisect! does is basically a binary search between two revisions
 (between which you know that a bug is introduced) by checking out
 revisions and asking the developer if the bug is present or
@@ -457,7 +470,7 @@ workflow is by pulling other peoples changes into a local repository,
 introducing quality practices like \emph{code reviews} fits in very
 well. Whenever anyone pull code from someone else, they simply look at
 the diff, and if it does not meet the agreed upon quality standards,
-they don't merge them until it does\cite{osullivan09}.
+they don't merge them until it does \cite{osullivan09}.
 
 \section{The Telia Smart Home Project Context}
 \label{sec:telia}
@@ -465,11 +478,10 @@ they don't merge them until it does\cite{osullivan09}.
 The last semester of the Software Engineering program at Blekinge
 Institute of Technology is concluded with a large group software
 engineering project. Within this course, the students are put in
-charge of themselves organizing and execution a software project for a
-customer from the industry. The authors of this paper participated in
-one such project, \emph{Telia Smart Home}. The project team consisted
-of eight students. The choice of project methodology and tools was put
-in the hands of the students.
+charge of themselves organizing (in terms of methodology and tools)
+and executing a software project for a customer from the industry. The
+authors of this paper participated in one such project, \emph{Telia
+ Smart Home}. The project team consisted of eight students.
 
 When choosing a VCS the project members had a number of considerations
 to account for. VCS can be used in a number of ways. Some limits are
@@ -483,14 +495,14 @@ use git decentralized as well a centralized was a major point. Also,
 the prior experience from some members of the project made the
 transition for other members less burdensome.
 
-But defining a workflow does not end with selecting a tool. As stated, 
+But defining a workflow does not end with selecting a tool. As stated,
 git is very flexible in the way developers interact with it. It is not
-uncommon to use it centralized, and in fact, the Telia Smart Home project
-does just this in their documentation repository. But one of the key 
-strength is its decentralization. It has no enforced "central repository"
-through which all changesets must pass. If the team want to have a 
-centralized repository it must itself give a arbitrary repository that
-semantic meaning.
+uncommon to use it centralized, and in fact, the Telia Smart Home
+project does just this in its documentation repository. But one of the
+key strength is its decentralization. It has no enforced "central
+repository" through which all changesets must pass. If the team want
+to have a centralized repository it must itself give an arbitrary
+repository that semantic meaning.
 
 Are there any alternatives to be considered? Certainly. Again, git is 
 indeed quite flexible. It will yield to the wishes of the user. There are 
@@ -518,7 +530,7 @@ exclusive). Some of the most popular ones are presented here:
   benevolent dictator workflow. There is one designated maintainer, and
   other contributers make "pull requests", primarily via e-mail.  If the
   benevolent dictator accepts the patch, he or she merges it into his or
-  hers own repository, where everybody gets their source code from. The
+  her own repository, where everybody gets their source code from. The
   name, "Benevolent dictator", is a term jokingly used about Linus
   Torvalds, the initial author and later primary maintainer for the Linux
   kernel (and also, the initial author of git!).
@@ -533,18 +545,18 @@ exclusive). Some of the most popular ones are presented here:
 \end{figure}
 
 Each of these workflows are appropriate in some situations. However,
-none of these totally fitted the needs of the Telia project. Instead,
-the Telia Smart Home project designed its own workflow (see Figure
-\ref{fig:workflow}). The workflow used for the code repositories in the
-project is based upon individual developer repositories and branches.
-Each developer has an own repository, and makes commits to this. The
-system (with the help of so called hooks (i.e. scripts triggered by
-specific events)) then pushes changes to a repository on a central build
-server. Here, a build is triggered using the \emph{Jenkins} continuous
-integration system and the commit is also forwarded to the so called
-"baseline" repository, but only to a developer's private branch. It is
-not merged into the actual baseline code, but it is still accessible for
-other developers.
+none of these totally fitted the needs of the Telia Smart Home
+project. Instead, the Telia Smart Home project designed its own
+workflow (see Figure \ref{fig:workflow}). The workflow used for the
+code repositories in the project is based upon individual developer
+repositories and branches.  Each developer has their own repository,
+and makes commits to this. The system (with the help of so called
+hooks (i.e. scripts triggered by specific events)) then pushes changes
+to a repository on a central build server. Here, a build is triggered
+using the \emph{Jenkins} continuous integration system and the commit
+is also forwarded to the so called "baseline" repository, but only to
+a developer's private branch. It is not merged into the actual
+baseline code, but it is still accessible for other developers.
 
 The release manager is now notified that there is a commit awaiting
 approval. He or she can check build and test status on Jenkins and see the
@@ -554,41 +566,38 @@ reject it, and inform the author of why it wasn't suitable for inclusion.
 If the commit is merged, other developers are now encouraged to merge it 
 into their local repositories, their working copy of the source code. 
 
-When designing this system, the sought benefits was the integrated code 
-review and approval system. With this, the release managers could validate 
-adherence to coding conventions as well as making sure that the system
-is buildable and all unit tests passes. Possibly, much of this could even
-have been automated (e.g. static code analysis and coding style validation
-tools are commonplace) to an even higher degree, but that is, as always, a 
-cost/benefit question. It is innovative and unique, but it does build upon
-the so called "benevolent dictator" workflow, especially the release
-management component of it. The success of this workflow from high-profile 
+When designing this system, the sought benefits was the integrated
+code review and approval system. With this, the release managers could
+validate adherence to coding conventions as well as making sure that
+the system is buildable and all unit tests passes. Possibly, much of
+this could even have been automated (e.g. static code analysis and
+coding style validation tools are commonplace) to an even higher
+degree, but that is, as always, a cost/benefit question. It is
+innovative and unique, but it does build upon the so called
+"benevolent dictator" workflow, especially the release management
+component of it. The success of this workflow from high-profile
 projects like the Linux kernel has been an inspiration for the design.
-The reason why the project rejected the topic branch workflow at an early
-stage was the problems associated with topic branches in the early stages
-of a software project, where a lot of interdependencies exist and basic
-infrastructure is needed. In later stages of the project, this workflow
-would have been more feasible, but the overhead associated with switching
-workflow was deemed to high. It has been used in some rare cases, where code
-was at a very experimental stage.
+The reason why the project rejected the topic branch workflow at an
+early stage was the problems associated with topic branches in the
+early stages of a software project, where a lot of interdependencies
+exist and basic infrastructure is needed. In later stages of the
+project, this workflow would have been more feasible, but the overhead
+associated with switching workflow was deemed too high. It has been
+used in some rare cases, where code was at a very experimental stage.
 
 \section{Results from Post-mortem Analysis}
 
-From the conducted interviews it is noticeable that survey participants
-rated their proficiency with DVCSes the same as with VCSes in general.
-
-Regarding the workflow employed by the Telia Smart Home (TSH)
-project, the survey conducted resulted in generally positive feedback,
-with only some minor reservations. Some concern was raised regarding
-the way the project ``abused git'' in the way branches were
-automatically re-pushed to branches in the mainline
-repository. A problem with the release manager approach was that it
-easily becomes a bottleneck, if for example the release manager is
-absent or busy. Several survey participants claimed to have
-experienced this problem. Another survey participant noted that the
-workflow looked more complex than it really was. Other participants
-noted that the code review came natural and worked well, and that the
-mainline build was rarely broken.
+Regarding the workflow employed by the Telia Smart Home project, the
+survey conducted resulted in generally positive feedback, with only
+some minor reservations. Some concern was raised regarding the way the
+project ``abused git'' in the way branches were automatically
+re-pushed to branches in the mainline repository. A problem with the
+release manager approach was that it easily becomes a bottleneck, if
+for example the release manager is absent or busy. Several survey
+participants claimed to have experienced this problem. Another survey
+participant noted that the workflow looked more complex than it really
+was. Other participants noted that the code review came natural and
+worked well, and that the mainline build was rarely broken.
 
 \begin{table}[tp]
  \begin{center}
@@ -645,11 +654,11 @@ management was effective once the team and release managers got used
 to the workflow.
 
 When looking at the survey results from the participants in other
-projects, the general impression is that little though has been put
+projects, the general impression is that little thought has been put
 into the design of their VCS workflows. Only a minority of the
 respondents "understood" what \emph{workflow} meant, in the VCS
 context. Those that did, described a simple centralized workflow ---
-with or without DVCS tools. 
+with or without DVCS tools.
 
 \begin{figure}
  \begin{center}
@@ -683,18 +692,18 @@ to us that the workflow was feasible and that the developers
 unanimously was happy with it, albeit with some minor criticism.
 
 The re-pushing of branches could very well have been excluded from the
-workflow, the reasons for having it was to ease the work for release
+workflow; the reasons for having it was to ease the work for release
 managers by having all changes in one repository and not spread
 out. The other reason was to allow easy overview in the issue tracking
 system (Redmine) which was limited to only show one repository.
 
-The release management criticism is not in any way limited to the TSH
-workflow, it is present in any workflow using a review process to
-accept and merge commits. One possible solution could be for example
-having a dedicated person for the review process, but in this project
-the cost would have been too big. Sharing the responsibility of
-release management between several people could also remove the
-downtime of the review process when the release manager is
+The release management criticism is not in any way limited to the
+Telia Smart Home workflow, it is present in any workflow using a
+review process to accept and merge commits. One possible solution
+could be for example having a dedicated person for the review process,
+but in this project the cost would have been too big. Sharing the
+responsibility of release management between several people could also
+remove the downtime of the review process when the release manager is
 absent. Overall the release management and code review has worked
 well, with few hick-ups, and as Table \ref{tbl:breakage} shows, the
 mainline build was broken relatively few times, and only for short
@@ -747,6 +756,9 @@ consideration when evaluating the choice of a VCS.
 \section*{Appendices}
 \appendix
 \section{Data from Literature Review}
+
+Articles passing the initial relevance screening:
+
 \subsection{Version Management Tools: CVS to BK in the Linux Kernel}
 
 An article by M. Shaikh and T. Cornford, written in 2002 and published 

@@ -19,6 +19,8 @@
 \author{Olof Johansson \and Daniel Persson}
 \institute{Blekinge Institute of Technology}
 
+\hyphenation{VCS VCSes foo-bar-baz}
+
 \begin{document}
 
 \maketitle
@@ -58,7 +60,8 @@ software project. The paper will try to answer the following questions:
 \end{enumerate}
 
 In Section \ref{sec:background} we introduce the concepts of VCS and
-give a brief history of its evolution. We continue with the findings
+give a brief history of its evolution. Our research methodology is
+described in Section \ref{sec:method}. We continue with the findings
 from the literature review in Section \ref{sec:litrev}. In Section
 \ref{sec:telia} we introduce the student run Telia Smart Home project
 with focus on its use of version control systems. The primary means of
@@ -120,7 +123,7 @@ essentially a wrapper around the Unix tool \emph{diff} was released in
 \cite{tichy85}. RCS stored the latest version of a file and the deltas
 backwards towards the original state of the file, as opposed to SCCS
 that did the opposite, leading to faster access to the later
-revisions\cite{robert06}, which makes more sense from a user
+revisions \cite{robert06}, which makes more sense from a user
 perspective.
 
 \subsection{The Client-Server Era}
@@ -171,7 +174,9 @@ much like transaction in a database \cite{subversion} --- in CVS this
 wasn't the case, and it could cause inconsistencies or corrupted data
 if it happened).
 
-Other systems such as Perforce\footnote{ http://www.perforce.com },
+Other systems such as Perforce\footnote{
+	http://www.perforce.com
+},
 IBM's ClearCase\footnote{
   http://www-01.ibm.com/software/awdtools/clearcase } and Microsoft's
 Visual SourceSafe\footnote{
@@ -180,7 +185,11 @@ and Team Foundation Server\footnote{
   http://msdn.microsoft.com/en-us/vstudio/ff637362 } existed, but
 being proprietary tools they never grew popular in the open source
 community, and their popularity within big corporations is hard to
-measure.
+measure. It should be noted that at least Perforce has seen some use 
+within open source, most notably Perl, prior to its migration to the
+DVCS system Git\footnote{
+	http://git-scm.org
+}, described below.
 
 \subsection{The Distributed Era}
 
@@ -215,6 +224,7 @@ projects, and while the numbers compared to Subversion is still quite
 small, the change speed is pointing straight up \cite{bird09}.
 
 \section{Research Methodology}
+\label{sec:method}
 
 To answer the research questions proposed in the introduction we will
 conduct both a review of literature in the field of configuration
@@ -1069,7 +1079,7 @@ Vrije University.
 \end{abstract}
 
 Similar to the RCS paper, this paper is about CVS, and is also written
-by its creator. With CVS being a major influence on most modern VCSs,
+by its creator. With CVS being a major influence on most modern VCSes,
 this is also imperative for the understanding of basic version control
 concepts. This paper relates to research question 1.
 
@@ -1142,7 +1152,7 @@ An article by V. Ambriola, L. Bendix and P. Ciancarini, written in
 \end{abstract}
 
 This paper gives a more abstract view of Configuration Management in
-general, as well as an overview of older VCSs. This relates to
+general, as well as an overview of older VCSes. This relates to
 research question 1.
 
 \end{document}

@@ -10,14 +10,17 @@
 
 \documentclass{llncs}
 
+\usepackage[utf8x]{inputenc}
 \usepackage{graphicx}
 \usepackage{ctable}
 \usepackage{tabularx}
 \usepackage{subfig}
 
 \title{Workflows and Distributed Version Control}
-\author{Olof Johansson \and Daniel Persson}
-\institute{Blekinge Institute of Technology}
+\author{Olof Johansson \inst{1} \and Daniel Persson\inst{1}}
+
+\institute{Blekinge Institute of Technology \\\email{olof@ethup.se} \email{daniel@silvertejp.org}}
+
 
 \hyphenation{VCS VCSes foo-bar-baz}
 
@@ -45,13 +48,14 @@ We intend to investigate the adoption of the new trend within version
 control systems (VCS) --- distributed version control systems (DVCS)
 --- within the field of software engineering. The use of DVCS has
 increased in the last years, with the introduction of several
-implementations. The move from centralized version control to DVCS may
-not always be unproblematic due to conceptual differences. It is
-important to investigate the benefits and challenges of DVCS in order
-to let software projects make informed decisions in their choice of,
-and use of, version control systems. The research will be conducted as
-a literature review, and as a post-mortem analysis of a student run
-software project. The paper will try to answer the following questions:
+implementations \cite{bird09}. The move from centralized version
+control to DVCS may not always be unproblematic due to conceptual
+differences. It is important to investigate the benefits and
+challenges of DVCS in order to let software projects make informed
+decisions in their choice of, and use of, version control systems. The
+research will be conducted as a literature review, and as a
+post-mortem analysis of a student run software project. The paper will
+try to answer the following questions:
 
 \begin{enumerate}
  \item How do the developers adapt to a distributed workflow?
@@ -67,23 +71,23 @@ from the literature review in Section \ref{sec:litrev}. In Section
 with focus on its use of version control systems. The primary means of
 doing the post-mortem analysis will be to conduct interviews with
 participants in their various roles. In addition to this we will also
-collect data from various project management and configuration
-management tools and systems.
+collect data (like build metadata) from the Telia Smart Home project
+management and configuration management tools and systems.
 
 \section{Background}
 \label{sec:background}
 
 Version control is one of the most valuable tools used in
-configuration management, especially important for software
-engineering projects with more than one developer. Here, we will
-provide a brief overview on the history of the concept and its uses
---- why it is used and how it is used.
+configuration management \cite{ambriola90}, especially important for
+software engineering projects with more than one developer. Here, we
+will provide a brief overview on the history of the concept and its
+uses --- why it is used and how it is used.
 
-The history of Version Control Systems can be divided into three
-categories; the ones that only manages local files, the ones that rely
-on a central server to serve connecting clients, and finally the
-distributed ones, where every 'node' can act as both a client and a
-server. The three categories roughly follow each other
+We have decided to divide the history of Version Control Systems into
+three categories; the ones that only manages local files, the ones
+that rely on a central server to serve connecting clients, and finally
+the distributed ones, where every 'node' can act as both a client and
+a server. The three categories roughly follow each other
 chronologically, naturally with transition-periods in between. At the
 moment the dominating tools are mostly client-server, but the
 distributed ones are rising fast in popularity, so perhaps we are
@@ -318,13 +322,13 @@ employ the same workflow as the Telia Smart Home project:
  \item Would you advice others to use your workflow? (yes/no)
 \end{enumerate}
 
-The post-mortem analysis will also include an analysis of various data
-collected during the project. Most of this data will come from
-different configuration and project management tools, such as Git for
-version control, Jenkins for continuous integration or Redmine for
-project management and issue tracking. The data collected from the
-project and configuration management tools will then be correlated
-with the data gained from the interviews and questionnaires.
+The post-mortem analysis will also include an analysis of the metadata
+collected from the build environment, like number of build failures,
+their duration and ratio against build successes. The data collected
+from the project and configuration management tools will be used in
+combination with interviews and questionnaires to answer research
+question 2 about code quality.
+
 
 \section{Literature Review}
 \label{sec:litrev}
@@ -491,7 +495,8 @@ engineering project. Within this course, the students are put in
 charge of themselves organizing (in terms of methodology and tools)
 and executing a software project for a customer from the industry. The
 authors of this paper participated in one such project, \emph{Telia
- Smart Home}. The project team consisted of eight students.
+  Smart Home}. The project team consisted of eight students working
+full time.
 
 When choosing a VCS the project members had a number of considerations
 to account for. VCS can be used in a number of ways. Some limits are
@@ -538,7 +543,7 @@ exclusive). Some of the most popular ones are presented here:
  \item \textbf{Benevolent dictator}: 
   A workflow, especially popular within open source projects, is the
   benevolent dictator workflow. There is one designated maintainer, and
-  other contributers make "pull requests", primarily via e-mail.  If the
+  other contributors make "pull requests", primarily via e-mail.  If the
   benevolent dictator accepts the patch, he or she merges it into his or
   her own repository, where everybody gets their source code from. The
   name, "Benevolent dictator", is a term jokingly used about Linus
@@ -598,16 +603,17 @@ used in some rare cases, where code was at a very experimental stage.
 \section{Results from Post-mortem Analysis}
 
 Regarding the workflow employed by the Telia Smart Home project, the
-survey conducted resulted in generally positive feedback, with only
-some minor reservations. Some concern was raised regarding the way the
-project ``abused git'' in the way branches were automatically
-re-pushed to branches in the mainline repository. A problem with the
-release manager approach was that it easily becomes a bottleneck, if
-for example the release manager is absent or busy. Several survey
-participants claimed to have experienced this problem. Another survey
-participant noted that the workflow looked more complex than it really
-was. Other participants noted that the code review came natural and
-worked well, and that the mainline build was rarely broken.
+survey conducted resulted in generally positive feedback (see appendix
+\ref{app:surveys}), with only some minor reservations. Some concern was raised
+regarding the way the project ``abused git'' in the way branches were
+automatically re-pushed to branches in the mainline repository. A
+problem with the release manager approach was that it easily becomes a
+bottleneck, if for example the release manager is absent or
+busy. Several survey participants claimed to have experienced this
+problem. Another survey participant noted that the workflow looked
+more complex than it really was. Other participants noted that the
+code review came natural and worked well, and that the mainline build
+was rarely broken.
 
 \begin{table}[tp]
  \begin{center}
@@ -1154,6 +1160,182 @@ An article by V. Ambriola, L. Bendix and P. Ciancarini, written in
 This paper gives a more abstract view of Configuration Management in
 general, as well as an overview of older VCSes. This relates to
 research question 1.
+
+\section{Questionnaire Results}
+\label{app:surveys}
+\setlength{\parindent}{0cm}
+\subsection{Internal Surveys}
+\scriptsize
+
+\begin{tabularx}{\textwidth}{>{\bfseries}p{6cm} X}
+ \multicolumn{2}{c}{Please rate your proficiency using the following
+  technologies:} \\ 
+ \toprule
+ VCSs in general & 4 \\
+ Distributed VCSs & 4 \\
+ Programming in general & 5 \\
+ \toprule
+ Do you have any previous experience with VCSs? If so, please
+ describe. &  \\
+ \midrule
+ What benefits do you see in using the workflow employed by the TSH
+ project? & Everyone is kept up to speed with the progress all the time \\
+ \midrule
+ What drawbacks do you see in using the workflow employed by the TSH
+ project? & None that i can think of \\
+ \midrule
+ Do you have any suggestions for improvements? & No \\
+ \midrule
+ What is your overall impression of the workflow? & Very good \\
+ \midrule
+ Would you advice others to use the workflow? & Yes \\
+ \bottomrule
+ \\[-0.7em]
+\end{tabularx}
+
+\begin{tabularx}{\textwidth}{>{\bfseries}p{6cm} X}
+ \multicolumn{2}{c}{Please rate your proficiency using the following
+  technologies:} \\
+ \toprule
+ VCSs in general & 3 \\
+ Distributed VCSs & 3 \\
+ Programming in general & 4 \\
+ \toprule
+ Do you have any previous experience with VCSs? If so, please
+ describe. & Used Git in a couple of projects \\
+ \midrule
+ What benefits do you see in using the workflow employed by the TSH
+ project? & Ensures a buildable product at all times; clean,
+ consistent code \\
+ \midrule
+ What drawbacks do you see in using the workflow employed by the TSH
+ project? &  \\
+ \midrule
+ Do you have any suggestions for improvements? & Possibly change
+ release manager once in a while \\
+ \midrule
+ What is your overall impression of the workflow? & Works good,
+ except for the occasional nagging needed to get changes merged by
+ the release manager \\
+ \midrule
+ Would you advice others to use the workflow? & Yes \\
+ \bottomrule
+ \\[-0.7em]  
+\end{tabularx}
+
+\begin{tabularx}{\textwidth}{>{\bfseries}p{6cm} X}
+ \multicolumn{2}{c}{Please rate your proficiency using the following
+  technologies:} \\
+ \toprule
+ VCSs in general & 2 \\
+ Distributed VCSs & 2 \\
+ Programming in general & 4 \\
+ \toprule
+ Do you have any previous experience with VCSs? If so, please
+ describe. & No \\
+ \midrule
+ What benefits do you see in using the workflow employed by the TSH
+ project? & Makes a good flow \\
+ \midrule
+ What drawbacks do you see in using the workflow employed by the TSH
+ project? & None \\
+ \midrule
+ Do you have any suggestions for improvements? & No \\
+ \midrule
+ What is your overall impression of the workflow? & Good \\
+ \midrule
+ Would you advice others to use the workflow? & Yes \\
+ \bottomrule
+ \\[-0.7em]  
+\end{tabularx}
+
+\begin{tabularx}{\textwidth}{>{\bfseries}p{6cm} X}
+ \multicolumn{2}{c}{Please rate your proficiency using the following
+  technologies:} \\
+ \toprule
+ VCSs in general & 1 \\
+ Distributed VCSs & 1 \\
+ Programming in general & 2 \\
+ \toprule
+ Do you have any previous experience with VCSs? If so, please
+ describe. & No \\
+ \midrule
+ What benefits do you see in using the workflow employed by the TSH
+ project? & I can make mistakes and there is no problem \\
+ \midrule
+ What drawbacks do you see in using the workflow employed by the TSH
+ project? & I have to call someone to get help, at least in the
+ beginning of the project \\
+ \midrule
+ Do you have any suggestions for improvements? & No \\
+ \midrule
+ What is your overall impression of the workflow? & I think it worked
+ great\\
+ \midrule
+ Would you advice others to use the workflow? & Yes \\
+ \bottomrule
+ \\[-0.7em]  
+\end{tabularx}
+
+\begin{tabularx}{\textwidth}{>{\bfseries}p{6cm} X}
+ \multicolumn{2}{c}{Please rate your proficiency using the following
+  technologies:} \\
+ \toprule
+ VCSs in general & 2 \\
+ Distributed VCSs & 2 \\
+ Programming in general & 3 \\
+ \toprule
+ Do you have any previous experience with VCSs? If so, please
+ describe. & Gallega project, setting up personal VCS (both Subversion) \\
+ \midrule
+ What benefits do you see in using the workflow employed by the TSH
+ project? & Main build is not broken, code is reviewed \\
+ \midrule
+ What drawbacks do you see in using the workflow employed by the TSH
+ project? & Workflow is disturbed when release managers are absent \\
+ \midrule
+ Do you have any suggestions for improvements? & No \\
+ \midrule
+ What is your overall impression of the workflow? & It worked fine \\
+ \midrule
+ Would you advice others to use the workflow? & Yes \\
+ \bottomrule
+ \\[-0.7em]  
+\end{tabularx}
+
+\begin{tabularx}{\textwidth}{>{\bfseries}p{6cm} X}
+ \multicolumn{2}{c}{Please rate your proficiency using the following
+  technologies:} \\
+ \toprule
+ VCSs in general & 4 \\
+ Distributed VCSs & 4 \\
+ Programming in general & 4 \\
+ \toprule
+ Do you have any previous experience with VCSs? If so, please
+ describe. & Yes, with Git and Subversion \\
+ \midrule
+ What benefits do you see in using the workflow employed by the TSH
+ project? & Code is reviewed. Release managers work as gatekeepers
+ and does not merge bad code \\
+ \midrule
+ What drawbacks do you see in using the workflow employed by the TSH
+ project? & You abused git a bit by re-pushing the branches to a main
+ repository \\
+ \midrule
+ Do you have any suggestions for improvements? & See above \\
+ \midrule
+ What is your overall impression of the workflow? & looks more
+ complex than it really was, was quite easy to work with \\
+ \midrule
+ Would you advice others to use the workflow? & Yes, with the
+ above mentioned improvements \\
+ \bottomrule
+ \\[-0.7em]  
+\end{tabularx}
+
+
+\subsection{External surveys}
+\input{extsurvey.tex}
 
 \end{document}
 

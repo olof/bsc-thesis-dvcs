@@ -1,6 +1,6 @@
-\newcommand{\extsurveyvcs}[7] % 
+\newcommand{\extsurveyvcs}[7] %
 {
-  \multicolumn{2}{VCS experience} \\
+  \multicolumn{2}{c}{VCS experience} \\
   Subversion & #1 \\
   Git & #2 \\
   CVS & #3 \\
@@ -10,31 +10,39 @@
   Other & #7 \\
 }
 
-\newcommand{\extsurvey}[14] % 
+\newcommand{\extsurvey}[8] % 
 {
- \begin{tabularx}{\textwidth}{>{\bfseries} lX}
-  \multicolumn{2}{Please rate your experience and proficeny using the following technologies:} \\
-  VCS (1-5) & #1 \\
-  DVCS (1-5) & #2 \\
-  Programming in general (1-5) & #3 \\
-  #4
-  Do you have any previous experience with VCSs? If so, please describe. & #5 \\
-  \multicolumn{2}Current Project Version Control Use} \\
-  What version control software are you currently using? & #6 \\
-  How do you work with your VCS tools? & #7 \\
-  Would you advice other to use your workflow? & #8 \\
- \end{tabularx}
+\begin{tabularx}{\textwidth}{>{\bfseries} p{6cm}X}
+ \multicolumn{2}{c}{Please rate your experience and proficeny using the following technologies:} \\
+ \toprule
+ VCS (1-5) & #1 \\
+ DVCS (1-5) & #2 \\
+ Programming in general (1-5) & #3 \\
+ #4
+ \midrule
+ Do you have any previous experience with VCSs? If so, please
+ describe. & #5 \\
+ \midrule
+ \multicolumn{2}{c}{Current Project Version Control Use} \\
+ \toprule
+ What version control software are you currently using? & #6 \\
+ \midrule
+ How do you work with your VCS tools? & #7 \\
+ \midrule
+ Would you advice other to use your workflow? & #8 \\
+\end{tabularx}
+
 }
 
-\extsurvey{ {3}{3}{4}{\extsurveyvcs{n}{n}{n}{y}{n}{n}{}}{}{Mercurial}{Pull,merge,commit,Push}{y} }
-\extsurvey{ {4}{4}{4}{\extsurveyvcs{n}{n}{n}{n}{n}{n}{}}{}{Mercurial}{pull,merge,commit,push}{y} }
-\extsurvey{ {3}{4}{4}{\extsurveyvcs{n}{n}{n}{n}{n}{n}{}}{}{Mercurial}{"Small", atomic commits. Good communication to avoid merge conflitcs.}{y}
-\extsurvey{ {3}{2}{4}{\extsurveyvcs{y}{y}{n}{n}{n}{n}{}}{}{SVN, Sharepoint}{}{y}
-\extsurvey{ {3}{?}{3}{\extsurveyvcs{y}{n}{n}{n}{n}{n}{}}{}{Subversion}{As a plugin in eclipse}{y}
-\extsurvey{ {4}{4}{4}{\extsurveyvcs{y}{y}{n}{n}{n}{n}{}}{}{SVN, Sharepoint for documents}{}{n}
-\extsurvey{ {3}{?}{3}{\extsurveyvcs{y}{n}{n}{n}{n}{n}{}}{}{Subversion}{Dunno}{}
-\extsurvey{ {3}{3}{3}{\extsurveyvcs{y}{n}{n}{n}{n}{n}{}}{}{Subversion}{}{}
-\extsurvey{ {3}{3,1}{3}{\extsurveyvcs{y}{n}{n}{y}{n}{n}{}}{Gaming project}{Mercurial}{Pull,commit,push}{}
-\extsurvey{ {2}{2}{3}{\extsurveyvcs{y}{y}{n}{n}{n}{n}{}}{}{Git at "work!" and Subversion in School}{As soon as I have made a change(the smaller the better) i push my changes to the remote repository. I also pull as much as possible to stay updated}{y}
-\extsurvey{ {2}{3}{2}{\extsurveyvcs{y}{y}{n}{n}{n}{n}{}}{}{We are using Git with git-bash and egit plugin for eclipse}{Push and pull oft so my local repository is in latest version if no errors exists.}{y}
-\extsurvey{ {3}{4}{3}{\extsurveyvcs{y}{y}{n}{n}{n}{n}{}}{}{git}{kolla jenkins direkt på morgonen och han är blå så kör en pull annars fixa så han blir blå. därefter under dagen såfort som funktionalitet börjar kompilera som det ska så commit och kontinuerligt under dagen göra pull så ofta som möjligt så man inte kommer efter mergetåget. när saker och ting börjar likna nånting så kör push, var inte rädd för att bryta bygget då det alltid går att reseta.}{y}
+\extsurvey{3}{3}{4}{\extsurveyvcs{n}{n}{n}{y}{n}{n}{}}{}{Mercurial}{Pull,merge,commit,Push}{y}
+\extsurvey {4}{4}{4}{\extsurveyvcs{n}{n}{n}{n}{n}{n}{}}{}{Mercurial}{pull,merge,commit,push}{y}
+\extsurvey {3}{4}{4}{\extsurveyvcs{n}{n}{n}{n}{n}{n}{}}{}{Mercurial}{"Small", atomic commits. Good communication to avoid merge conflitcs.}{y}
+\extsurvey {3}{2}{4}{\extsurveyvcs{y}{y}{n}{n}{n}{n}{}}{}{SVN, Sharepoint}{}{y}
+\extsurvey {3}{?}{3}{\extsurveyvcs{y}{n}{n}{n}{n}{n}{}}{}{Subversion}{As a plugin in eclipse}{y}
+\extsurvey {4}{4}{4}{\extsurveyvcs{y}{y}{n}{n}{n}{n}{}}{}{SVN, Sharepoint for documents}{}{n}
+\extsurvey {3}{?}{3}{\extsurveyvcs{y}{n}{n}{n}{n}{n}{}}{}{Subversion}{Dunno}{}
+\extsurvey {3}{3}{3}{\extsurveyvcs{y}{n}{n}{n}{n}{n}{}}{}{Subversion}{}{}
+\extsurvey {3}{3,1}{3}{\extsurveyvcs{y}{n}{n}{y}{n}{n}{}}{Gaming project}{Mercurial}{Pull,commit,push}{}
+\extsurvey {2}{2}{3}{\extsurveyvcs{y}{y}{n}{n}{n}{n}{}}{}{Git at "work!" and Subversion in School}{As soon as I have made a change(the smaller the better) i push my changes to the remote repository. I also pull as much as possible to stay updated}{y}
+\extsurvey {2}{3}{2}{\extsurveyvcs{y}{y}{n}{n}{n}{n}{}}{}{We are using Git with git-bash and egit plugin for eclipse}{Push and pull oft so my local repository is in latest version if no errors exists.}{y}
+\extsurvey {3}{4}{3}{\extsurveyvcs{y}{y}{n}{n}{n}{n}{}}{}{git}{kolla jenkins direkt på morgonen och han är blå så kör en pull annars fixa så han blir blå. därefter under dagen såfort som funktionalitet börjar kompilera som det ska så commit och kontinuerligt under dagen göra pull så ofta som möjligt så man inte kommer efter mergetåget. när saker och ting börjar likna nånting så kör push, var inte rädd för att bryta bygget då det alltid går att reseta.}{y}

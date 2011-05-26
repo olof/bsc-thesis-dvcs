@@ -86,7 +86,7 @@ uses --- why it is used and how it is used.
 We have decided to divide the history of Version Control Systems into
 three categories; the ones that only manages local files, the ones
 that rely on a central server to serve connecting clients, and finally
-the distributed ones, where every 'node' can act as both a client and
+the distributed ones, where every node can act as both a client and
 a server. The three categories roughly follow each other
 chronologically, naturally with transition-periods in between. At the
 moment the dominating tools are mostly client-server, but the
@@ -212,9 +212,8 @@ even without an internet connection.
 
 One of the first distributed version control systems, the proprietary
 BitKeeper, infamously withdrew the rights for the Linux kernel project
-to freely use BitKeeper \cite{robert06}\cite{shaikh02} (which was a
-proprietary system) which sparked Linus Torvalds to create a new, free
-tool: Git.
+to freely use BitKeeper \cite{robert06}\cite{shaikh02} which sparked
+Linus Torvalds to create a new, free tool: Git.
 
 The main goal with git was to create a version control system that
 supported a BitKeeper-like workflow with high performance and strong
@@ -444,7 +443,7 @@ to every operation \cite{torvalds07}. Additionally, every developer
 that works towards the same central server adds more to its workload,
 making it scale quite badly \cite{mackall06}. In contrast, DVCSes do
 not work towards the same server, even though some repositories are
-perhaps considered 'more important' than others, and thus scales very
+perhaps considered more important than others, and thus scales very
 well almost any amount of developers \cite{shaikh02}. Working locally
 leads to operations like branching and merging being much faster and
 smoother, encouraging developers to use them more \cite{alwis09}.

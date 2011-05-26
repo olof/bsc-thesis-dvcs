@@ -122,13 +122,13 @@ the software developers had previously lacked \cite{rochkind75}.
 It is worth noting that SCCS was not the only VCS that followed the
 philosophy of storing the files locally, \emph{Revision Control
   System}\footnote{ http://www.gnu.org/software/rcs } (RCS) which was
-essentially a wrapper around the Unix tool \emph{diff} was released in
-1982 and gradually started taking over as the dominant VCS for Unix
-\cite{tichy85}. RCS stored the latest version of a file and the deltas
-backwards towards the original state of the file, as opposed to SCCS
-that did the opposite, leading to faster access to the later
-revisions \cite{robert06}, which makes more sense from a user
-perspective.
+essentially a wrapper around the UNIX{\texttrademark} tool \emph{diff}
+was released in 1982 and gradually started taking over as the dominant
+VCS for UNIX{\texttrademark} \cite{tichy85}. RCS stored the latest
+version of a file and the deltas backwards towards the original state
+of the file, as opposed to SCCS that did the opposite, leading to
+faster access to the later revisions \cite{robert06}, which makes more
+sense from a user perspective.
 
 \subsection{The Client-Server Era}
 Although RCS was an improvement over SCCS it still had several flaws;
@@ -1078,7 +1078,7 @@ Vrije University.
  The implementation of the abstract data type “repository” starts
  from version control primitives that can handle a single file and
  then coordinates their actions. All access routines are programmed
- as UNIX † shell scripts and use the RCS programs as version control
+ as UNIX shell scripts and use the RCS programs as version control
  primitives. In programming the access routines, many more
  possibilities had to be taken into account than was intuitively
  reasonable. Examples are given.

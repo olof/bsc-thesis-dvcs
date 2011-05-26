@@ -19,8 +19,10 @@
 \title{Workflows and Distributed Version Control}
 \author{Olof Johansson \inst{1} \and Daniel Persson\inst{1}}
 
-\institute{Blekinge Institute of Technology \\\email{olof@ethup.se} \email{daniel@silvertejp.org}}
-
+\institute{
+	Blekinge Institute of Technology \\
+	\email{olof@ethup.se}, \email{daniel@silvertejp.org}
+}
 
 \hyphenation{VCS VCSes foo-bar-baz}
 
@@ -514,16 +516,17 @@ transition for other members less burdensome.
 But defining a workflow does not end with selecting a tool. As stated,
 git is very flexible in the way developers interact with it. It is not
 uncommon to use it centralized, and in fact, the Telia Smart Home
-project does just this in its documentation repository. But one of the
+project did just this in its documentation repository. But one of the
 key strength is its decentralization. It has no enforced "central
 repository" through which all changesets must pass. If the team want
 to have a centralized repository it must itself give an arbitrary
 repository that semantic meaning.
 
-Are there any alternatives to be considered? Certainly. Again, git is 
-indeed quite flexible. It will yield to the wishes of the user. There are 
-a number of easily recognized workflows (perhaps not always mutually
-exclusive). Some of the most popular ones are presented here:
+Are there any alternatives to be considered? Certainly. Again, git, as
+a DVCS, is indeed quite flexible. It will yield to the wishes of the
+user. There are a number of easily recognized workflows (perhaps not
+always mutually exclusive). Some of the most popular ones are
+presented here:
 
 \begin{itemize}
  \item \textbf{Centralized}: 
@@ -539,7 +542,8 @@ exclusive). Some of the most popular ones are presented here:
   Working on a new cool, but experimental feature? Perhaps it is not as 
   tested as the rest of the system is. You probably don't want to have 
   it in the main code. Create a branch specifically for this "topic" or
-  "feature".
+  "feature". When it is done, it may get merged into the mainline
+	branch.
 
  \item \textbf{Benevolent dictator}: 
   A workflow, especially popular within open source projects, is the
@@ -575,12 +579,13 @@ a developer's private branch. It is not merged into the actual
 baseline code, but it is still accessible for other developers.
 
 The release manager is now notified that there is a commit awaiting
-approval. He or she can check build and test status on Jenkins and see the
-delta between baseline and the proposed patch. After possibly running local
-tests, the release manager can either approve and merge the commit or
-reject it, and inform the author of why it wasn't suitable for inclusion.
-If the commit is merged, other developers are now encouraged to merge it 
-into their local repositories, their working copy of the source code. 
+approval. He or she can check build and test status on Jenkins and see
+the delta between baseline and the proposed patch. After possibly
+running local tests, the release manager can either approve and merge
+the commit or reject it, and in the latter case inform the author of
+why it wasn't suitable for inclusion.  If the commit is merged, other
+developers are now encouraged to merge it into their local
+repositories, their working copy of the source code. 
 
 When designing this system, the sought benefits was the integrated
 code review and approval system. With this, the release managers could
@@ -617,8 +622,9 @@ code review came natural and worked well, and that the mainline build
 was rarely broken.
 
 \begin{table}[tp]
+ \caption{Statistics for build failures}
  \begin{center}
-  \begin{tabular}{ccc}
+  \begin{tabularx}{0.9\textwidth}{p{3.5cm}p{3.5cm}X}
    \toprule
    Date & Build attempts & Duration (min) \\
    \midrule
@@ -630,8 +636,7 @@ was rarely broken.
    2011-03-30 & 11 & 115 \\
    \bottomrule
    \\[-0.7em]
-  \end{tabular}
-  \caption{Statistics for build failures}
+  \end{tabularx}
   \label{tbl:breakage}
  \end{center}
 \end{table}
@@ -718,7 +723,7 @@ The release management criticism is not in any way limited to the
 Telia Smart Home workflow, it is present in any workflow using a
 review process to accept and merge commits. One possible solution
 could be for example having a dedicated person for the review process,
-but in this project the cost would have been too big. Sharing the
+but in this project the cost would have been too large. Sharing the
 responsibility of release management between several people could also
 remove the downtime of the review process when the release manager is
 absent. Overall the release management and code review has worked
@@ -728,7 +733,7 @@ periods of time.
 
 \section{Discussion}
 
-The literature review focused on migration cost, whereas the
+The literature review focused on migration costs, whereas the
 post-mortem analysis investigated the adoption of DVCS in a new
 project. The migration in the latter case was an individual adoption
 rather than the "collective" project migration usually described in
@@ -761,7 +766,7 @@ benefits outweighs the migration costs.
 
 One type of cases that should be especially motivated to evaluate the
 use of DVCS are new projects, without any prior processes, routines
-and infrastructure. The drawbacks are few and mostly minor, the most
+and infrastructure. The drawbacks are few and mostly minor; the most
 severe drawback is personal preferences. Some are used to working with
 a specific tool or centralized VCS in general and may be more
 productive in a familiar setting. This should be taken into
